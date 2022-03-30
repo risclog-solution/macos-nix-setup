@@ -10,7 +10,7 @@
     delta = {
       enable = true;
       options = {
-        syntax-theme = "solarized-dark";
+        syntax-theme = "Solarized (dark)";
         minus-style = "#fdf6e3 #dc322f";
         plus-style = "#fdf6e3 #859900";
         side-by-side = false;
