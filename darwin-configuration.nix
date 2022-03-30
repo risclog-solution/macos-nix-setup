@@ -46,6 +46,14 @@
     };
   };
 
+  launchd.user.agents.fakes3 = {
+    command = "/usr/local/bin/fakes3 -r /Users/sweh/fakes3data -p 9000 --license 5905935126";
+    serviceConfig = {
+      KeepAlive = true;
+      RunAtLoad = true;
+    };
+  };
+
   # Create /etc/bashrc that loads the nix-darwin environment.
   programs.zsh.enable = true;  # default shell on catalina
   programs.fish.enable = true;

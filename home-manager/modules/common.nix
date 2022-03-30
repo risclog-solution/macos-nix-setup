@@ -8,6 +8,7 @@
   home.packages = with pkgs; [
     ack
     geckodriver
+    poppler_utils
     rustc
     nodePackages.grunt-cli
     mercurial
