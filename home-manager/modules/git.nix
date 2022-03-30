@@ -24,7 +24,7 @@
       tag.forceSignAnnotated = true;
 
       changelog.filename = "CHANGES.rst";
-      changelog.preprocess = "lambda x: re.sub('(^.*) ?\\(([A-Z]+-[0-9]+)\\)\\.?$', r'Re \\2: \\1', x)"
+      changelog.preprocess = "lambda x: re.sub('(^.*) ?\\(([A-Z]+-[0-9]+)\\)\\.?$', r'Re \\2: \\1', x)";
 
       init.defaultBranch = "master";
       init.templatedir = "~/.git-templates";
