@@ -16,6 +16,7 @@
     zsh-powerlevel10k
     zsh-syntax-highlighting
     zsh-history-substring-search
+    thefuck
     imagemagick
     gnupg
     tmux
