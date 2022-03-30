@@ -6,6 +6,12 @@
   programs.direnv.nix-direnv.enable = true;
 
   home.packages = with pkgs; [
+    ack
+    geckodriver
+    #imagemagick
+    #nginx
+    #postgresql_14
+    #redis
     gnupg
     tmux
     wget
@@ -27,7 +33,10 @@
 
     yarn
     neovim
+    python27
+    python37
     python38
+    python39
     jq
     go
     cloc

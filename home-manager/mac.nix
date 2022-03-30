@@ -33,4 +33,16 @@
   # automate `defaults write com.google.chrome ApplePressAndHoldEnabled -bool false`
 
   programs.git.signing.signByDefault = true;
+
+  # nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.packageOverrides = pkgs:
+    {
+      python39 = pkgs.python39.overrideAttrs (attrs:
+        pkgs.lib.attrsets.recursiveUpdate attrs { meta.priority = 70; });
+      python38 = pkgs.python38.overrideAttrs (attrs:
+        pkgs.lib.attrsets.recursiveUpdate attrs { meta.priority = 100; });
+      python37 = pkgs.python37.overrideAttrs (attrs:
+        pkgs.lib.attrsets.recursiveUpdate attrs { meta.priority = 30; });
+    };
+
 }
