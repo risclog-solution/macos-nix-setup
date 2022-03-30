@@ -35,7 +35,7 @@
       core.editor = "mvim -f";
       core.fileMode = false;
       core.ignorecase = false;
-      excludesfile = "~/.gitignore";
+      core.excludesfile = "~/.gitignore";
 
       alias.st = "status";
       alias.ci = "commit";
