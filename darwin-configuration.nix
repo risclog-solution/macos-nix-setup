@@ -8,6 +8,7 @@
         pkgs.vim
         pkgs.nginx
         pkgs.postgresql_14
+        pkgs.redis
     ];
 
   # Use a custom configuration.nix location.
@@ -18,7 +19,7 @@
   services.nix-daemon.enable = true;
 
   launchd.daemons.nginx = {
-    command = "${pkgs.nginx}/bin/nginx -p /etc/nginx/tmp -c /etc/nginx/nginx.conf";
+    command = "${pkgs.nginx}/bin/nginx -p /etc/local/nginx/tmp -c /etc/local/nginx/nginx.conf";
     path = [pkgs.nginx];
     serviceConfig = {
       KeepAlive = true;
@@ -28,8 +29,17 @@
   };
 
   launchd.user.agents.postgresql_14 = {
-    command = "${pkgs.postgresql_14}/bin/postgres -D /etc/postgres/data";
+    command = "${pkgs.postgresql_14}/bin/postgres -D /etc/local/postgres/data";
     path = [pkgs.postgresql_14];
+    serviceConfig = {
+      KeepAlive = true;
+      RunAtLoad = true;
+    };
+  };
+
+  launchd.user.agents.redis = {
+    command = "${pkgs.redis}/bin/redis-server /etc/local/redis/redis.conf";
+    path = [pkgs.redis];
     serviceConfig = {
       KeepAlive = true;
       RunAtLoad = true;

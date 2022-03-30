@@ -8,10 +8,15 @@
   home.packages = with pkgs; [
     ack
     geckodriver
-    #imagemagick
-    #nginx
-    #postgresql_14
-    #redis
+    rustc
+    nodePackages.grunt-cli
+    mercurial
+    zsh
+    oh-my-zsh
+    zsh-powerlevel10k
+    zsh-syntax-highlighting
+    zsh-history-substring-search
+    imagemagick
     gnupg
     tmux
     wget

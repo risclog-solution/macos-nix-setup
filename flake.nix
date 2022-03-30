@@ -19,6 +19,7 @@
           ./home-manager/modules/fish.nix
           ./home-manager/modules/common.nix
           ./home-manager/modules/git.nix
+          ./home-manager/modules/zsh.nix
           ./home-manager/mac.nix
         ];
       };
