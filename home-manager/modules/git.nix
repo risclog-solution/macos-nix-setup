@@ -13,7 +13,7 @@
         syntax-theme = "Solarized (dark)";
         minus-style = "#fdf6e3 #dc322f";
         plus-style = "#fdf6e3 #859900";
-        side-by-side = false;
+        side-by-side = true;
       };
     };
 
@@ -39,8 +39,14 @@
 
       alias.st = "status";
       alias.ci = "commit";
+      alias.pullsrb = "!git stash save && git pull --rebase && git stash pop && echo 'Success!'";
 
-      commit.gpgsign = true;
+      oh-my-zsh.hide-info = 0;
+
+      filter.lfs.required = true;
+      filter.lfs.smudge = "git-lfs smudge -- %f";
+      filter.lfs.process = "git-lfs filter-process";
+      filter.lfs.clean = "git-lfs clean -- %f";
     };
   };
 }
