@@ -10,10 +10,34 @@
     delta = {
       enable = true;
       options = {
-        syntax-theme = "Solarized (dark)";
-        minus-style = "#fdf6e3 #dc322f";
-        plus-style = "#fdf6e3 #859900";
-        side-by-side = true;
+        side-by-side = false;
+        hyperlinks = true;
+        commit-decoration-style = "none";
+        dark = true;
+        file-added-label = "[+]";
+        file-copied-label = "[C]";
+        file-decoration-style = "none";
+        file-modified-label = "[M]";
+        file-removed-label = "[-]";
+        file-renamed-label = "[R]";
+        file-style = "232 bold 184";
+        hunk-header-decoration-style = "none";
+        hunk-header-file-style = "\"#999999\"";
+        hunk-header-line-number-style = "bold \"#03a4ff\"";
+        hunk-header-style = "none";
+        line-numbers = true;
+        line-numbers-left-style = "black";
+        line-numbers-minus-style = "\"#B10036\"";
+        line-numbers-plus-style = "\"#03a4ff\"";
+        line-numbers-right-style = "black";
+        line-numbers-zero-style = "\"#999999\"";
+        minus-emph-style = "syntax bold \"#780000\"";
+        minus-style = "syntax \"#400000\"";
+        plus-emph-style = "syntax bold \"#007800\"";
+        plus-style = "syntax \"#004000\"";
+        whitespace-error-style = "\"#280050\" reverse";
+        zero-style = "syntax";
+        syntax-theme = "Nord";
       };
     };
 

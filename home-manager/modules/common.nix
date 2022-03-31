@@ -7,6 +7,7 @@
 
   home.packages = with pkgs; [
     ack
+    pre-commit
     geckodriver
     poppler_utils
     rustc
