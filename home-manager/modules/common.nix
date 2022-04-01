@@ -7,6 +7,16 @@
 
   home.packages = with pkgs; [
     ack
+    zlib.dev
+    libjpeg
+    openssl.dev
+    openssl.out
+    libxslt
+    libffi
+    libxml2
+    readline
+    postgresql
+    file
     pre-commit
     geckodriver
     poppler_utils
