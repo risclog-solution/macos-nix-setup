@@ -53,8 +53,7 @@
       init.defaultBranch = "master";
       init.templatedir = "~/.git-templates";
 
-      github.user = "sweh";
-      github.token = "57bf71b45b03c1ee9347e7caf894a8ce";
+      github.user = "${config.home.username}";
 
       core.editor = "mvim -f";
       core.fileMode = false;

@@ -10,7 +10,7 @@
 
   outputs = inputs: {
     homeConfigurations = {
-      swehmbp2021 = inputs.home-manager.lib.homeManagerConfiguration {
+      rlmbp2022 = inputs.home-manager.lib.homeManagerConfiguration {
         system = "aarch64-darwin";
         homeDirectory = "/Users/sweh";
         username = "sweh";

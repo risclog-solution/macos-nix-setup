@@ -12,13 +12,15 @@
       theme = "robbyrussell";
       extraConfig = ''
         export LANG=de_DE.UTF-8
-        export PATH=/Users/sweh/.local/bin:$PATH
+        export PATH=${config.home.homeDirectory}/.local/bin:$PATH
 
         if [[ -n $SSH_CONNECTION ]]; then
           export EDITOR='vim'
         else
           export EDITOR='mvim -f'
         fi
+
+        HISTORY_SUBSTRING_SEARCH_PREFIXED=1
 
         # Load seperated config files
         for conf in "$HOME/.config/zsh/config.d/"*.zsh; do
@@ -30,8 +32,8 @@
         bindkey "$terminfo[kcud1]" history-substring-search-down
         bindkey '^[[A' history-substring-search-up
 
-        export LDFLAGS="-L/Users/sweh/.nix-profile/lib"
-        export CFLAGS="-I/Users/sweh/.nix-profile/include"
+        export LDFLAGS="-L${config.home.homeDirectory}/.nix-profile/lib"
+        export CFLAGS="-I${config.home.homeDirectory}/.nix-profile/include"
       '';
     };
     zplug = {
