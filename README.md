@@ -5,6 +5,9 @@ Clone this repository into your home directory under `~/.nixpkgs`.
 
 Open `flake.nix` and change `homeDirectory` and `username` to your needs.
 
+Open `home-manager/modules/git.nix` and change `userName`, `userEmail` and
+`signing.key` to your needs.
+
 Run the following commands inside `~/.nixpkgs`::
 
     sh <(curl -L https://nixos.org/nix/install)
