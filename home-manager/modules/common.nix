@@ -24,7 +24,7 @@
     poppler_utils
     rustc
     nodePackages.grunt-cli
-    mercurial
+    mercurialFull
     zsh
     oh-my-zsh
     zsh-powerlevel10k
