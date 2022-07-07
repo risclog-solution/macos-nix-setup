@@ -126,6 +126,14 @@ warn() {
   printf "${tty_red}Warning${tty_reset}: %s\n" "$(chomp "$1")"
 }
 
+getc() {
+  local save_state
+  save_state="$(/bin/stty -g)"
+  /bin/stty raw -echo
+  IFS='' read -r -n 1 -d '' "$@"
+  /bin/stty "${save_state}"
+}
+
 execute_sudo() {
   local -a args=("$@")
   if have_sudo_access
@@ -140,6 +148,10 @@ execute_sudo() {
     ohai "${args[@]}"
     execute "${args[@]}"
   fi
+}
+
+should_install_command_line_tools() {
+  ! [[ -e "/Library/Developer/CommandLineTools/usr/bin/git" ]]
 }
 
 if [ -d "$RL_CHECKOUT" ]
@@ -159,5 +171,27 @@ then
   cd $RL_CHECKOUT
 fi
 
+if should_install_command_line_tools && test -t 0
+then
+  ohai "Installing the Command Line Tools (expect a GUI popup):"
+  execute_sudo "/usr/bin/xcode-select" "--install"
+  echo "Press any key when the installation has completed."
+  getc
+  execute_sudo "/usr/bin/xcode-select" "--switch" "/Library/Developer/CommandLineTools"
+fi
+
 ohai "Change config to current user $USER"
 sed -i -- "s/USERNAME/$USER/" flake.nix
+sed -i -- "s/USERNAME/$USER/" darwin-configuration.nix
+
+ohai "Enter your name (Firstname Lastname):"
+read USERFULLNAME
+sed -i -- "s/USERFULLNAME/$USERFULLNAME/" home-manager/modules/git.nix
+sed -i -- "s/USERFULLNAME/$USERFULLNAME/" home-manager/modules/hg.nix
+ohai "Enter your company email address:"
+read USEREMAIL
+sed -i -- "s/USEREMAIL/$USEREMAIL/" home-manager/modules/git.nix
+sed -i -- "s/USEREMAIL/$USEREMAIL/" home-manager/modules/hg.nix
+ohai "Enter your password for repos.risclog.de:"
+read USERREPOSPASSWORD
+sed -i -- "s/USERREPOSPASSWORD/$USERREPOSPASSWORD/" home-manager/modules/hg.nix
