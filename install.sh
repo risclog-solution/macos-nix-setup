@@ -188,10 +188,12 @@ ohai "Enter your name (Firstname Lastname):"
 read USERFULLNAME
 sed -i -- "s/USERFULLNAME/$USERFULLNAME/" home-manager/modules/git.nix
 sed -i -- "s/USERFULLNAME/$USERFULLNAME/" home-manager/modules/hg.nix
+
 ohai "Enter your company email address:"
 read USEREMAIL
 sed -i -- "s/USEREMAIL/$USEREMAIL/" home-manager/modules/git.nix
 sed -i -- "s/USEREMAIL/$USEREMAIL/" home-manager/modules/hg.nix
+
 ohai "Enter your password for repos.risclog.de:"
-read USERREPOSPASSWORD
+read -s USERREPOSPASSWORD
 sed -i -- "s/USERREPOSPASSWORD/$USERREPOSPASSWORD/" home-manager/modules/hg.nix
