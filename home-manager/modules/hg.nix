@@ -10,7 +10,7 @@
     extraConfig = {
         auth."risclog.prefix" = "https://repos.risclog.de/";
         auth."risclog.username" = "${config.home.username}";
-        auth."risclog.password" = "XXXXXXX";
+        auth."risclog.password" = "See5shah";
         changelog.filename = "CHANGES.rst";
         ui.merge = "internal:merge3";
     };

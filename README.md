@@ -1,6 +1,13 @@
 Setup development environment for Mac using Nix
 ===============================================
 
+
+Run install script:
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/risclog-solution/macos-nix-setup/HEAD/install.sh)"
+```
+
 Clone this repository into your home directory under `~/.nixpkgs`.
 
 Open `flake.nix` and change `homeDirectory` and `username` to your needs.

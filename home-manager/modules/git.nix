@@ -8,7 +8,7 @@
     signing.key = "416EF9DA22BA2C40";
 
     delta = {
-      enable = true;
+      enable = false;
       options = {
         side-by-side = false;
         hyperlinks = true;

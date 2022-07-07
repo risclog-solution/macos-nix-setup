@@ -11,6 +11,7 @@
       plugins = [ "git" "mercurial" "macos" "thefuck" ];
       theme = "robbyrussell";
       extraConfig = ''
+        eval "$(zoxide init zsh)"
         export LANG=de_DE.UTF-8
         export PATH=${config.home.homeDirectory}/.local/bin:$PATH
 
@@ -34,6 +35,7 @@
 
         export LDFLAGS="-L${config.home.homeDirectory}/.nix-profile/lib"
         export CFLAGS="-I${config.home.homeDirectory}/.nix-profile/include"
+        export LD_LIBRARY_PATH="${config.home.homeDirectory}/.nix-profile/lib"
       '';
     };
     zplug = {

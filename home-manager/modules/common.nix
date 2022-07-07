@@ -7,6 +7,9 @@
 
   home.packages = with pkgs; [
     ack
+    gdb
+    act
+    xz
     zlib.dev
     zlib.out
     libjpeg.dev
@@ -14,24 +17,34 @@
     openssl.dev
     openssl.out
     libxslt
-    libffi
+    libffi.dev
+    libffi.out
+    haskellPackages.cryptohash-sha256
     libxml2
     readline
     postgresql
     file
     pre-commit
+    binutils
+    openjdk11
+    coreutils
     geckodriver
     poppler_utils
+    qpdf
+    ghostscript
+    zoxide
+    imagemagick7
+    liberation_ttf
     rustc
     nodePackages.grunt-cli
     mercurialFull
     zsh
+    ctags
     oh-my-zsh
     zsh-powerlevel10k
     zsh-syntax-highlighting
     zsh-history-substring-search
     thefuck
-    imagemagick
     gnupg
     tmux
     wget
@@ -56,6 +69,7 @@
     git-crypt
 
     youtube-dl
+    watchman
 
     yarn
     neovim
