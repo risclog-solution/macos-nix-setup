@@ -12,8 +12,8 @@
     homeConfigurations = {
       rlmbp2022 = inputs.home-manager.lib.homeManagerConfiguration {
         system = "aarch64-darwin";
-        homeDirectory = "/Users/sweh";
-        username = "sweh";
+        homeDirectory = "/Users/USERNAME";
+        username = "USERNAME";
         configuration.imports = [
           ./home-manager/modules/home-manager.nix
           ./home-manager/modules/common.nix
