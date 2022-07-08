@@ -198,13 +198,13 @@ ohai "Enter your password for repos.risclog.de:"
 read -s USERREPOSPASSWORD
 sed -i -- "s/USERREPOSPASSWORD/$USERREPOSPASSWORD/" home-manager/modules/hg.nix
 
-read -p "Use 1Password 8 SSH agent? " -n 1 -r
-echo
+ohai "Use 1Password 8 SSH agent? (y/n)"
+read -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    1PASSWORD_AGENT='identityAgent = "\"${config.home.homeDirectory}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\"";'
-    1PASSWORD_AGENT=$(printf '%s\n' "$1PASSWORD_AGENT" | sed -e 's/[\/&]/\\&/g')
-    sed -i -- "s/1PASSWORD_SSH_AGENT_CONFIG/$1PASSWORD_AGENT/" home-manager/modules/ssh.nix
+    ONEPASSWORD_AGENT='identityAgent = "\"${config.home.homeDirectory}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\"";'
+    ONEPASSWORD_AGENT=$(printf '%s\n' "$ONEPASSWORD_AGENT" | sed -e 's/[\/&]/\\&/g')
+    sed -i -- "s/1PASSWORD_SSH_AGENT_CONFIG/$ONEPASSWORD_AGENT/" home-manager/modules/ssh.nix
 else
     sed -i -- "s/1PASSWORD_SSH_AGENT_CONFIG//" home-manager/modules/ssh.nix
 fi
