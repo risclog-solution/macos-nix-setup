@@ -217,3 +217,25 @@ then
 else
     sed -i -- "s/1PASSWORD_SSH_AGENT_CONFIG//" home-manager/modules/ssh.nix
 fi
+
+
+if ! [[ -e "/Library/Developer/CommandLineTools/usr/bin/git" ]]
+then
+    ohai "Installing nix"
+    sh <(curl -L https://nixos.org/nix/install)
+    ohai "Installing nix flakes"
+    nix-env -iA nixpkgs.nixFlakes
+    ohai "Pinning release channel 21.11"
+    nix-channel --add https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz home-manager
+    nix-channel --update
+fi
+
+if ! [[ -e "/Users/$USER/.nix-profile/bin/home-manager" ]]
+then
+    ohai "Installing home manager"
+    NIX_PATH="~/.nix-defexpr/channels:nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels" nix-shell '<home-manager>' -A install
+fi
+
+ohai "Switching to new system configuration"
+home-manager switch --flake .#rlmbp2022
+darwin-rebuild switch --show-trace
