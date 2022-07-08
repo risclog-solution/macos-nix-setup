@@ -245,7 +245,8 @@ else
     sed -i -- "s/1PASSWORD_SSH_AGENT_CONFIG//" home-manager/modules/ssh.nix
 fi
 
-mkdir -p /etc/local/fakes3/data
+execute_sudo "${MKDIR[@]}" "/etc/local/fakes3/data"
+execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/fakes3/data"
 
 echo "USERFULLNAME=\"$USERFULLNAME\"" > $CONFIG
 echo "USEREMAIL=\"$USEREMAIL\"" >> $CONFIG
@@ -266,10 +267,12 @@ fi
 
 if ! [[ -x "$(command -v home-manager)" ]]
 then
+    ohai "Installing home manager"
     nix-env -iA nixpkgs.nixFlakes
     nix-channel --add https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz home-manager
     nix-channel --update
-    ohai "Installing home manager"
+    mkdir -p "/Users/$USER/.config/nix/"
+    echo "experimental-features = nix-command flakes" > "/Users/$USER/.config/nix/nix.conf"
     NIX_PATH="/Users/$USER/.nix-defexpr/channels:nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels" nix-shell '<home-manager>' -A install
 fi
 
