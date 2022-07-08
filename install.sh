@@ -196,11 +196,11 @@ sed -i -- "s/USEREMAIL/$USEREMAIL/" home-manager/modules/hg.nix
 
 ohai "Enter you gpg public key:"
 read GPGPUBKEY
-if ! [[ GPGPUBKEY ]]
+if ! [[ $GPGPUBKEY ]]
 then
-    sed -i -- "s/SIGNINGKEY//" home-manage/modules/git.nix;
+    sed -i -- "s/SIGNINGKEY//" home-manager/modules/git.nix;
 else
-    sed -i -- "s/SIGNINGKEY/signing.key = \"GPGPUBKEY\"/" home-manage/modules/git.nix;
+    sed -i -- "s/SIGNINGKEY/signing.key = \"$GPGPUBKEY\";/" home-manager/modules/git.nix;
 fi
 
 ohai "Enter your password for repos.risclog.de:"
