@@ -26,6 +26,8 @@ TOUCH=("/usr/bin/touch")
 
 unset HAVE_SUDO_ACCESS # unset this from the environment
 
+mkdir -p "/Users/$USER/.config"
+
 have_sudo_access() {
   if [[ ! -x "/usr/bin/sudo" ]]
   then
