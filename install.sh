@@ -20,6 +20,7 @@ CHOWN=("/usr/sbin/chown")
 CHGRP=("/usr/bin/chgrp")
 USER="$(chomp "$(id -un)")"
 export USER
+CONFIG="/Users/$USER/.config/rlnixpkgs"
 GROUP="admin"
 TOUCH=("/usr/bin/touch")
 
@@ -157,18 +158,13 @@ should_install_command_line_tools() {
 if [ -d "$RL_CHECKOUT" ]
 then
     ohai "Checkout dir $RL_CHECKOUT already exists. Updating."
-    cd $RL_CHECKOUT && git checkout -- .
-    git pull
-fi
-
-if ! [[ -d "${RL_CHECKOUT}" ]]
-then
+    cd $RL_CHECKOUT && git checkout -- . && git pull
+else
   ohai "Checkout dir $RL_CHECKOUT does not exist. Creating."
   execute_sudo "${MKDIR[@]}" "${RL_CHECKOUT}"
   execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "${RL_CHECKOUT}"
   ohai "Cloning repository ${RL_REPO} into ${RL_CHECKOUT}:"
   git clone ${RL_REPO} ${RL_CHECKOUT}
-  cd $RL_CHECKOUT
 fi
 
 if should_install_command_line_tools && test -t 0
@@ -180,22 +176,45 @@ then
   execute_sudo "/usr/bin/xcode-select" "--switch" "/Library/Developer/CommandLineTools"
 fi
 
+cd $RL_CHECKOUT
+
+if [[ -e "$CONFIG" ]]
+then
+    ohai "Read state from disk"
+    source "$CONFIG"
+else
+    USERFULLNAME=""
+    USEREMAIL=""
+    GPGPUBKEY=""
+    USERREPOSPASSWORD=""
+    USEONEPASSWORDAGENT=""
+fi
+
 ohai "Change config to current user $USER"
 sed -i -- "s/USERNAME/$USER/" flake.nix
 sed -i -- "s/USERNAME/$USER/" darwin-configuration.nix
 
-ohai "Enter your name (Firstname Lastname):"
-read USERFULLNAME
+if ! [[ -n $USERFULLNAME ]]
+then
+    ohai "Enter your name (Firstname Lastname):"
+    read USERFULLNAME
+fi
 sed -i -- "s/USERFULLNAME/$USERFULLNAME/" home-manager/modules/git.nix
 sed -i -- "s/USERFULLNAME/$USERFULLNAME/" home-manager/modules/hg.nix
 
-ohai "Enter your company email address:"
-read USEREMAIL
+if ! [[ -n $USEREMAIL ]]
+then
+    ohai "Enter your company email address:"
+    read USEREMAIL
+fi
 sed -i -- "s/USEREMAIL/$USEREMAIL/" home-manager/modules/git.nix
 sed -i -- "s/USEREMAIL/$USEREMAIL/" home-manager/modules/hg.nix
 
-ohai "Enter you gpg public key:"
-read GPGPUBKEY
+if ! [[ -n $GPGPUBKEY ]]
+then
+    ohai "Enter you gpg public key:"
+    read GPGPUBKEY
+fi
 if ! [[ $GPGPUBKEY ]]
 then
     sed -i -- "s/SIGNINGKEY//" home-manager/modules/git.nix;
@@ -203,13 +222,19 @@ else
     sed -i -- "s/SIGNINGKEY/signing.key = \"$GPGPUBKEY\";/" home-manager/modules/git.nix;
 fi
 
-ohai "Enter your password for repos.risclog.de:"
-read USERREPOSPASSWORD
+if ! [[ -n $USERREPOSPASSWORD ]]
+then
+    ohai "Enter your password for repos.risclog.de:"
+    read USERREPOSPASSWORD
+fi
 sed -i -- "s/USERREPOSPASSWORD/$USERREPOSPASSWORD/" home-manager/modules/hg.nix
 
-ohai "Use 1Password 8 SSH agent? (y/n)"
-read -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ ]]
+if ! [[ -n $USEONEPASSWORDAGENT ]]
+then
+    ohai "Use 1Password 8 SSH agent? (y/n)"
+    read USEONEPASSWORDAGENT
+fi
+if [[ $USEONEPASSWORDAGENT =~ ^[Yy]$ ]]
 then
     ONEPASSWORD_AGENT='identityAgent = "\"${config.home.homeDirectory}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\"";'
     ONEPASSWORD_AGENT=$(printf '%s\n' "$ONEPASSWORD_AGENT" | sed -e 's/[\/&]/\\&/g')
@@ -218,8 +243,15 @@ else
     sed -i -- "s/1PASSWORD_SSH_AGENT_CONFIG//" home-manager/modules/ssh.nix
 fi
 
+mkdir -p /etc/local/fakes3/data
 
-if ! [[ -e "/Library/Developer/CommandLineTools/usr/bin/git" ]]
+echo "USERFULLNAME=\"$USERFULLNAME\"" > $CONFIG
+echo "USEREMAIL=\"$USEREMAIL\"" >> $CONFIG
+echo "GPGPUBKEY=\"$GPGPUBKEY\"" >> $CONFIG
+echo "USERREPOSPASSWORD=\"$USERREPOSPASSWORD\"" >> $CONFIG
+echo "USEONEPASSWORDAGENT=\"$USEONEPASSWORDAGENT\"" >> $CONFIG
+
+if ! [[ -e "/run/current-system/sw/bin/nix-channel" ]]
 then
     ohai "Installing nix"
     sh <(curl -L https://nixos.org/nix/install)
@@ -237,5 +269,6 @@ then
 fi
 
 ohai "Switching to new system configuration"
+have_sudo_access
 home-manager switch --flake .#rlmbp2022
 darwin-rebuild switch --show-trace
