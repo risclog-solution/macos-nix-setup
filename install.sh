@@ -201,6 +201,7 @@ then
     sed -i -- "s/SIGNINGKEY//" home-manage/modules/git.nix;
 else
     sed -i -- "s/SIGNINGKEY/signing.key = \"GPGPUBKEY\"/" home-manage/modules/git.nix;
+fi
 
 ohai "Enter your password for repos.risclog.de:"
 read USERREPOSPASSWORD
