@@ -264,16 +264,13 @@ then
     exit 1
 fi
 
-ohai "Installing nix flakes"
-nix-env -iA nixpkgs.nixFlakes
-ohai "Pinning release channel 21.11"
-nix-channel --add https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz home-manager
-nix-channel --update
-
 if ! [[ -x "$(command -v home-manager)" ]]
 then
+    nix-env -iA nixpkgs.nixFlakes
+    nix-channel --add https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz home-manager
+    nix-channel --update
     ohai "Installing home manager"
-    NIX_PATH="~/.nix-defexpr/channels:nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels" nix-shell '<home-manager>' -A install
+    NIX_PATH="/Users/$USER/.nix-defexpr/channels:nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels" nix-shell '<home-manager>' -A install
 fi
 
 ohai "Switching to new system configuration"
