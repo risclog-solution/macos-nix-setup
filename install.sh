@@ -253,18 +253,24 @@ echo "GPGPUBKEY=\"$GPGPUBKEY\"" >> $CONFIG
 echo "USERREPOSPASSWORD=\"$USERREPOSPASSWORD\"" >> $CONFIG
 echo "USEONEPASSWORDAGENT=\"$USEONEPASSWORDAGENT\"" >> $CONFIG
 
-if ! [[ -e "/run/current-system/sw/bin/nix-channel" ]]
+if ! [[ -x "$(command -v nix-env)" ]]
 then
     ohai "Installing nix"
     sh <(curl -L https://nixos.org/nix/install)
-    ohai "Installing nix flakes"
-    nix-env -iA nixpkgs.nixFlakes
-    ohai "Pinning release channel 21.11"
-    nix-channel --add https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz home-manager
-    nix-channel --update
+fi
+if ! [[ -x "$(command -v nix-env)" ]]
+then
+    ohai "Please restart terminal to finish Nix installation"
+    exit 1
 fi
 
-if ! [[ -e "/Users/$USER/.nix-profile/bin/home-manager" ]]
+ohai "Installing nix flakes"
+nix-env -iA nixpkgs.nixFlakes
+ohai "Pinning release channel 21.11"
+nix-channel --add https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz home-manager
+nix-channel --update
+
+if ! [[ -x "$(command -v home-manager)" ]]
 then
     ohai "Installing home manager"
     NIX_PATH="~/.nix-defexpr/channels:nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels" nix-shell '<home-manager>' -A install
