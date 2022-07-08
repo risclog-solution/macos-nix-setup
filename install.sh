@@ -11,7 +11,7 @@ chomp() {
 }
 
 RL_CHECKOUT=/opt/nixpkgs
-RL_REPO=git@github.com:risclog-solution/macos-nix-setup.git
+RL_REPO=https://github.com/risclog-solution/macos-nix-setup.git
 CHMOD=("/bin/chmod")
 MKDIR=("/bin/mkdir" "-p")
 STAT_PRINTF=("stat" "-f")
@@ -155,6 +155,15 @@ should_install_command_line_tools() {
   ! [[ -e "/Library/Developer/CommandLineTools/usr/bin/git" ]]
 }
 
+if should_install_command_line_tools && test -t 0
+then
+  ohai "Installing the Command Line Tools (expect a GUI popup):"
+  execute_sudo "/usr/bin/xcode-select" "--install"
+  echo "Press any key when the installation has completed."
+  getc
+  execute_sudo "/usr/bin/xcode-select" "--switch" "/Library/Developer/CommandLineTools"
+fi
+
 if [ -d "$RL_CHECKOUT" ]
 then
     ohai "Checkout dir $RL_CHECKOUT already exists. Updating."
@@ -165,15 +174,6 @@ else
   execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "${RL_CHECKOUT}"
   ohai "Cloning repository ${RL_REPO} into ${RL_CHECKOUT}:"
   git clone ${RL_REPO} ${RL_CHECKOUT}
-fi
-
-if should_install_command_line_tools && test -t 0
-then
-  ohai "Installing the Command Line Tools (expect a GUI popup):"
-  execute_sudo "/usr/bin/xcode-select" "--install"
-  echo "Press any key when the installation has completed."
-  getc
-  execute_sudo "/usr/bin/xcode-select" "--switch" "/Library/Developer/CommandLineTools"
 fi
 
 cd $RL_CHECKOUT
