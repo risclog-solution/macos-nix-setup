@@ -194,8 +194,16 @@ read USEREMAIL
 sed -i -- "s/USEREMAIL/$USEREMAIL/" home-manager/modules/git.nix
 sed -i -- "s/USEREMAIL/$USEREMAIL/" home-manager/modules/hg.nix
 
+ohai "Enter you gpg public key:"
+read GPGPUBKEY
+if ! [[ GPGPUBKEY ]]
+then
+    sed -i -- "s/SIGNINGKEY//" home-manage/modules/git.nix;
+else
+    sed -i -- "s/SIGNINGKEY/signing.key = \"GPGPUBKEY\"/" home-manage/modules/git.nix;
+
 ohai "Enter your password for repos.risclog.de:"
-read -s USERREPOSPASSWORD
+read USERREPOSPASSWORD
 sed -i -- "s/USERREPOSPASSWORD/$USERREPOSPASSWORD/" home-manager/modules/hg.nix
 
 ohai "Use 1Password 8 SSH agent? (y/n)"
