@@ -27,8 +27,6 @@ TOUCH=("/usr/bin/touch")
 unset HAVE_SUDO_ACCESS # unset this from the environment
 
 mkdir -p "/Users/$USER/.config"
-mkdir -p "/Users/$USER/.config/zsh/config.d/"
-cp "config/p10k.zsh" "/Users/$USER/.config/zsh/config.d/"
 
 have_sudo_access() {
   if [[ ! -x "/usr/bin/sudo" ]]
@@ -181,6 +179,9 @@ else
 fi
 
 cd $RL_CHECKOUT
+
+mkdir -p "/Users/$USER/.config/zsh/config.d/"
+cp "config/p10k.zsh" "/Users/$USER/.config/zsh/config.d/"
 
 if [[ -e "$CONFIG" ]]
 then
