@@ -255,9 +255,6 @@ else
     sed -i -- "s/1PASSWORD_SSH_AGENT_CONFIG//" home-manager/modules/ssh.nix
 fi
 
-execute_sudo "${MKDIR[@]}" "/etc/local/fakes3/data"
-execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/fakes3/data"
-
 echo "USERFULLNAME=\"$USERFULLNAME\"" > $CONFIG
 echo "USEREMAIL=\"$USEREMAIL\"" >> $CONFIG
 echo "GPGPUBKEY=\"$GPGPUBKEY\"" >> $CONFIG
@@ -303,9 +300,29 @@ ohai "Switching to new system configuration"
 have_sudo_access
 home-manager switch --flake .#rlmbp2022
 
-
 cp darwin-configuration.nix /Users/$USER/.nixpkgs/
 darwin-rebuild switch
+
+if ! [ -d "/etc/local/postgres/data" ]
+then
+    execute_sudo "${MKDIR[@]}" "/etc/local/postgres/data"
+    execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/postgres"
+    /run/current-system/sw/bin/initdb /etc/local/postgres/data
+fi
+
+if ! [ -d "/etc/local/redis" ]
+then
+    execute_sudo "${MKDIR[@]}" "/etc/local/redis"
+    execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/redis"
+    cp config/redis.conf /etc/local/redis/
+fi
+
+if ! [ -d "/etc/local/nginx" ]
+then
+    execute_sudo "${MKDIR[@]}" "/etc/local/nginx/servers"
+    execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/nginx"
+    cp config/nginx.conf /etc/local/nginx/
+fi
 
 ohai "Installation successfull. Please close this window now."
 open -a iTerm .
