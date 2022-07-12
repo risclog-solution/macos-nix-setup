@@ -28,7 +28,7 @@ unset HAVE_SUDO_ACCESS # unset this from the environment
 
 mkdir -p "/Users/$USER/.config"
 
-if ! [[ -d "/Application/iTerm2.app/" ]]
+if ! [[ -d "/Application/iTerm.app/" ]]
 then
     ohai "Install iTerm2"
     curl https://iterm2.com/downloads/stable/iTerm2-3_4_16.zip -o ~/Downloads/iTerm2.zip

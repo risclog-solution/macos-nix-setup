@@ -37,7 +37,7 @@
     liberation_ttf
     rustc
     nodePackages.grunt-cli
-    mercurialFull
+    mercurial
     zsh
     ctags
     oh-my-zsh
