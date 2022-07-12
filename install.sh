@@ -323,6 +323,8 @@ if ! [ -d "/etc/local/nginx" ]
 then
     execute_sudo "${MKDIR[@]}" "/etc/local/nginx/servers"
     execute_sudo "${MKDIR[@]}" "/etc/local/nginx/logs"
+    execute_sudo "${MKDIR[@]}" "/var/cache/nginx/"
+    execute_sudo "${MKDIR[@]}" "/var/log/nginx/"
     execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/nginx"
     cp config/nginx.conf /etc/local/nginx/
     cp config/mime.types /etc/local/nginx/
