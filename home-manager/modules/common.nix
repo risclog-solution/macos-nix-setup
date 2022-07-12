@@ -22,7 +22,7 @@
     haskellPackages.cryptohash-sha256
     libxml2
     readline
-    postgresql
+    postgresql_14
     file
     pre-commit
     binutils

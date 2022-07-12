@@ -265,6 +265,7 @@ if ! [[ -x "$(command -v nix-env)" ]]
 then
     ohai "Installing nix"
     sh <(curl -L https://nixos.org/nix/install)
+    source ~/.zshrc
 fi
 if ! [[ -x "$(command -v nix-env)" ]]
 then
@@ -289,6 +290,7 @@ then
     ohai "Installing darwin-rebuild"
     nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
     ./result/bin/darwin-installer
+    source ~/.zshrc
 fi
 if ! [[ -x "$(command -v darwin-rebuild)" ]]
 then
@@ -307,7 +309,7 @@ if ! [ -d "/etc/local/postgres/data" ]
 then
     execute_sudo "${MKDIR[@]}" "/etc/local/postgres/data"
     execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/postgres"
-    /run/current-system/sw/bin/initdb /etc/local/postgres/data
+    initdb /etc/local/postgres/data
 fi
 
 if ! [ -d "/etc/local/redis" ]
