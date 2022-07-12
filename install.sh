@@ -28,6 +28,13 @@ unset HAVE_SUDO_ACCESS # unset this from the environment
 
 mkdir -p "/Users/$USER/.config"
 
+if ! [[ -d "/Application/iTerm2.app/" ]]
+then
+    ohai "Install iTerm2"
+    curl https://iterm2.com/downloads/stable/iTerm2-3_4_16.zip -o ~/Downloads/iTerm2.zip
+    unzip ~/Downloads/iTerm2.zip -d /Applications/
+fi
+
 have_sudo_access() {
   if [[ ! -x "/usr/bin/sudo" ]]
   then
@@ -280,17 +287,25 @@ then
     NIX_PATH="/Users/$USER/.nix-defexpr/channels:nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels" nix-shell '<home-manager>' -A install
 fi
 
+if ! [[ -x "$(command -v darwin-rebuild)" ]]
+then
+    ohai "Installing darwin-rebuild"
+    nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
+    ./result/bin/darwin-installer
+fi
+if ! [[ -x "$(command -v darwin-rebuild)" ]]
+then
+    ohai "Please restart terminal to finish nix-darwin installation"
+    exit 1
+fi
+
 ohai "Switching to new system configuration"
 have_sudo_access
 home-manager switch --flake .#rlmbp2022
-darwin-rebuild switch --show-trace
 
-if ! [[ -d "/Application/iTerm2.app/" ]]
-then
-    ohai "Install iTerm2"
-    curl https://iterm2.com/downloads/stable/iTerm2-3_4_16.zip -o ~/Downloads/iTerm2.zip
-    unzip ~/Downloads/iTerm2.zip -d /Applications/
-    open -a iTerm .
-fi
+
+cp darwin-configuration.nix /Users/$USER/.nixpkgs/
+darwin-rebuild switch
 
 ohai "Installation successfull. Please close this window now."
+open -a iTerm .
