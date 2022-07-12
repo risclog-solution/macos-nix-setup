@@ -19,7 +19,7 @@
   services.nix-daemon.enable = true;
 
   launchd.daemons.nginx = {
-    command = "${pkgs.nginx}/bin/nginx -p /etc/local/nginx/tmp -c /etc/local/nginx/nginx.conf";
+    command = "${pkgs.nginx}/bin/nginx -p /etc/local/nginx/tmp -c /etc/local/nginx/nginx.conf -e /etc/local/nginx/logs/error.log";
     path = [pkgs.nginx];
     serviceConfig = {
       KeepAlive = true;

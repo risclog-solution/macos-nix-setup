@@ -314,7 +314,7 @@ fi
 
 if ! [ -d "/etc/local/redis" ]
 then
-    execute_sudo "${MKDIR[@]}" "/etc/local/redis"
+    execute_sudo "${MKDIR[@]}" "/etc/local/redis/db"
     execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/redis"
     cp config/redis.conf /etc/local/redis/
 fi
@@ -322,8 +322,10 @@ fi
 if ! [ -d "/etc/local/nginx" ]
 then
     execute_sudo "${MKDIR[@]}" "/etc/local/nginx/servers"
+    execute_sudo "${MKDIR[@]}" "/etc/local/nginx/logs"
     execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/nginx"
     cp config/nginx.conf /etc/local/nginx/
+    cp config/mime.types /etc/local/nginx/
 fi
 
 ohai "Installation successfull. Please close this window now."
