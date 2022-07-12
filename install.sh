@@ -157,7 +157,7 @@ should_install_command_line_tools() {
   ! [[ -e "/Library/Developer/CommandLineTools/usr/bin/git" ]]
 }
 
-if ! [[ -d "/Application/iTerm.app/" ]]
+if ! [[ -d "/Applications/iTerm.app/" ]]
 then
     ohai "Install iTerm2"
     curl https://iterm2.com/downloads/stable/iTerm2-3_4_16.zip -o ~/Downloads/iTerm2.zip
