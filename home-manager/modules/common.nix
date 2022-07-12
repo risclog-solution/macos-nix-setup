@@ -101,10 +101,10 @@
     enable = true;
   };
 
-  home.file.".local/bin/b".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.nixpkgs/binaries/b";
-  home.file.".local/bin/drop_testdb".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.nixpkgs/binaries/drop_testdb.sh";
-  home.file.".local/bin/clean_repo".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.nixpkgs/binaries/clean_repo.sh";
-  home.file.".local/bin/mvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.nixpkgs/binaries/mvim";
-  home.file.".local/bin/t".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.nixpkgs/binaries/t";
-  home.file.".local/bin/tf".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.nixpkgs/binaries/tf";
+  home.file.".local/bin/b".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/b";
+  home.file.".local/bin/drop_testdb".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/drop_testdb.sh";
+  home.file.".local/bin/clean_repo".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/clean_repo.sh";
+  home.file.".local/bin/mvim".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/mvim";
+  home.file.".local/bin/t".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/t";
+  home.file.".local/bin/tf".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/tf";
 }

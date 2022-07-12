@@ -5,7 +5,7 @@
     userName = "USERFULLNAME";
     userEmail = "USEREMAIL";
 
-    SIGNINGKEY
+    signing.key = "SIGNINGKEY";
 
     delta = {
       enable = false;

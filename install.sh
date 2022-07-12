@@ -224,7 +224,7 @@ if ! [[ $GPGPUBKEY ]]
 then
     sed -i -- "s/SIGNINGKEY//" home-manager/modules/git.nix;
 else
-    sed -i -- "s/SIGNINGKEY/signing.key = \"$GPGPUBKEY\";/" home-manager/modules/git.nix;
+    sed -i -- "s/SIGNINGKEY/$GPGPUBKEY/" home-manager/modules/git.nix;
 fi
 
 if ! [[ -n $USERREPOSPASSWORD ]]
