@@ -289,4 +289,7 @@ then
     ohai "Install iTerm2"
     curl https://iterm2.com/downloads/stable/iTerm2-3_4_16.zip -o ~/Downloads/iTerm2.zip
     unzip ~/Downloads/iTerm2.zip -d /Applications/
+    open -a iTerm .
 fi
+
+ohai "Installation successfull. Please close this window now."
