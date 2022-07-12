@@ -28,13 +28,6 @@ unset HAVE_SUDO_ACCESS # unset this from the environment
 
 mkdir -p "/Users/$USER/.config"
 
-if ! [[ -d "/Application/iTerm.app/" ]]
-then
-    ohai "Install iTerm2"
-    curl https://iterm2.com/downloads/stable/iTerm2-3_4_16.zip -o ~/Downloads/iTerm2.zip
-    unzip ~/Downloads/iTerm2.zip -d /Applications/
-fi
-
 have_sudo_access() {
   if [[ ! -x "/usr/bin/sudo" ]]
   then
@@ -163,6 +156,13 @@ execute_sudo() {
 should_install_command_line_tools() {
   ! [[ -e "/Library/Developer/CommandLineTools/usr/bin/git" ]]
 }
+
+if ! [[ -d "/Application/iTerm.app/" ]]
+then
+    ohai "Install iTerm2"
+    curl https://iterm2.com/downloads/stable/iTerm2-3_4_16.zip -o ~/Downloads/iTerm2.zip
+    unzip ~/Downloads/iTerm2.zip -d /Applications/
+fi
 
 if should_install_command_line_tools && test -t 0
 then
