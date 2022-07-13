@@ -263,9 +263,8 @@ echo "USEONEPASSWORDAGENT=\"$USEONEPASSWORDAGENT\"" >> $CONFIG
 
 if ! [[ -x "$(command -v nix-env)" ]]
 then
-    ohai "Installing nix"
+    ohai "Installing nix. Answer always `y`."
     sh <(curl -L https://nixos.org/nix/install)
-    source ~/.zshrc
 fi
 if ! [[ -x "$(command -v nix-env)" ]]
 then
@@ -287,10 +286,9 @@ fi
 
 if ! [[ -x "$(command -v darwin-rebuild)" ]]
 then
-    ohai "Installing darwin-rebuild"
+    ohai "Installing darwin-rebuild. Answer `n` and then always `y`."
     nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
     ./result/bin/darwin-installer
-    source ~/.zshrc
 fi
 if ! [[ -x "$(command -v darwin-rebuild)" ]]
 then
@@ -330,5 +328,6 @@ then
     cp config/mime.types /etc/local/nginx/
 fi
 
-ohai "Installation successfull. Please close this window now."
+ohai "Opening iTerm, your new terminal app. If fonts are not shown correctly, run `p10k configure` once to install NerdFont."
 open -a iTerm .
+ohai "Installation successfull. Please close this window now."
