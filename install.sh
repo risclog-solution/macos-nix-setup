@@ -198,6 +198,7 @@ else
     USERFULLNAME=""
     USEREMAIL=""
     GPGPUBKEY=""
+    USERREPOSUSERNAME=""
     USERREPOSPASSWORD=""
     USEONEPASSWORDAGENT=""
 fi
@@ -234,12 +235,12 @@ else
     sed -i -- "s/SIGNINGKEY/$GPGPUBKEY/" home-manager/modules/git.nix;
 fi
 
-if ! [[ -n $USERREPOSPASSWORD ]]
+if ! [[ -n $USERREPOSUSERNAME]]
 then
-    ohai "Enter your password for repos.risclog.de:"
-    read USERREPOSPASSWORD
+    ohai "Enter your username for repos.risclog.de:"
+    read USERREPOSUSERNAME
 fi
-sed -i -- "s/USERREPOSPASSWORD/$USERREPOSPASSWORD/" home-manager/modules/hg.nix
+sed -i -- "s/USERREPOSUSERNAME/$USERREPOSUSERNAME/" home-manager/modules/hg.nix
 
 if ! [[ -n $USEONEPASSWORDAGENT ]]
 then
@@ -258,6 +259,7 @@ fi
 echo "USERFULLNAME=\"$USERFULLNAME\"" > $CONFIG
 echo "USEREMAIL=\"$USEREMAIL\"" >> $CONFIG
 echo "GPGPUBKEY=\"$GPGPUBKEY\"" >> $CONFIG
+echo "USERREPOSUSERNAME=\"$USERREPOSUSERNAME\"" >> $CONFIG
 echo "USERREPOSPASSWORD=\"$USERREPOSPASSWORD\"" >> $CONFIG
 echo "USEONEPASSWORDAGENT=\"$USEONEPASSWORDAGENT\"" >> $CONFIG
 
