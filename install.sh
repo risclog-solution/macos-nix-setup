@@ -242,6 +242,13 @@ then
 fi
 sed -i -- "s/USERREPOSUSERNAME/$USERREPOSUSERNAME/" home-manager/modules/hg.nix
 
+if ! [[ -n $USERREPOSPASSWORD ]]
+then
+    ohai "Enter your password for repos.risclog.de:"
+    read USERREPOSPASSWORD
+fi
+sed -i -- "s/USERREPOSPASSWORD/$USERREPOSPASSWORD/" home-manager/modules/hg.nix
+
 if ! [[ -n $USEONEPASSWORDAGENT ]]
 then
     ohai "Use 1Password 8 SSH agent? (y/n)"
