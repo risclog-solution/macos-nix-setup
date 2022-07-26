@@ -337,6 +337,9 @@ then
     cp config/mime.types /etc/local/nginx/
 fi
 
+ohai "Link hgrc to HOME"
+ln -s ~/.config/hg/hgrc ~/.hgrc
+
 ohai "Opening iTerm, your new terminal app. If fonts are not shown correctly, run `p10k configure` once to install NerdFont."
 open -a iTerm .
 ohai "Installation successfull. Please close this window now."
