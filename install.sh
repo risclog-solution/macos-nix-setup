@@ -189,6 +189,8 @@ cd $RL_CHECKOUT
 
 mkdir -p "/Users/$USER/.config/zsh/config.d/"
 cp "config/p10k.zsh" "/Users/$USER/.config/zsh/config.d/"
+cp "config/vimrc" "/Users/$USER/.vimrc"
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 if [[ -e "$CONFIG" ]]
 then
