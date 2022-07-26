@@ -235,7 +235,7 @@ else
     sed -i -- "s/SIGNINGKEY/$GPGPUBKEY/" home-manager/modules/git.nix;
 fi
 
-if ! [[ -n $USERREPOSUSERNAME]]
+if ! [[ -n $USERREPOSUSERNAME ]]
 then
     ohai "Enter your username for repos.risclog.de:"
     read USERREPOSUSERNAME
