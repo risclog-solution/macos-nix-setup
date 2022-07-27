@@ -1,2 +1,3 @@
 {
+    environment.pathsToLink = [ "/share" ];
 }
