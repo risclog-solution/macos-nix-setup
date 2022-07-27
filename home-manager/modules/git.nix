@@ -44,6 +44,7 @@
     extraConfig = {
       pull.rebase = true;
       push.default = "current";
+      push.autoSetupRemote = true;
 
       tag.forceSignAnnotated = true;
 
@@ -62,7 +63,29 @@
 
       alias.st = "status";
       alias.ci = "commit";
+      alias.co = "checkout";
       alias.pullsrb = "!git stash save && git pull --rebase && git stash pop && echo 'Success!'";
+      alias.b = "branch";
+      alias.ba = "branch -a";
+      alias.d = "diff";
+      alias.dc = "diff --cached";
+      alias.fp = "format-patch";
+      alias.g = "!git gui &";
+      alias.gr = "log --graph";
+      alias.go = "log --graph --pretty=oneline --abbrev-commit";
+      alias.k = "!gitk &";
+      alias.ka = "!gitk --all &";
+      alias.lc = "log ORIG_HEAD.. --stat --no-merges";
+      alias.lp = "log --patch-with-stat";
+      alias.mnf = "merge --no-ff";
+      alias.mnff = "merge --no-ff";
+      alias.mt = "mergetool";
+      alias.p = "format-patch -1";
+      alias.serve = "!git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git";
+      alias.sra = "svn rebase --all";
+      alias.sh = "!git-sh";
+      alias.stm = "status --untracked=no";
+      alias.stfu = "status --untracked=no";
 
       oh-my-zsh.hide-info = 0;
 

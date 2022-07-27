@@ -341,6 +341,7 @@ fi
 
 ohai "Link hgrc to HOME"
 ln -s ~/.config/hg/hgrc ~/.hgrc
+ln -s ~/.config/git/config ~/.gitconfig
 
 ohai "Opening iTerm, your new terminal app. If fonts are not shown correctly, run `p10k configure` once to install NerdFont."
 open -a iTerm .
