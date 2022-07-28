@@ -11,6 +11,10 @@
             extraOptions = {
               1PASSWORD_SSH_AGENT_CONFIG
               strictHostKeyChecking = "no";
+              IgnoreUnknown = "UseKeyChain,AddKeysToAgent,IdentityFile";
+              UseKeychain = "yes";
+              AddKeysToAgent = "yes";
+              IdentityFile = "~/.ssh/id_rsa";
             };
         };
         "flyingcircus-jump-host" = {
