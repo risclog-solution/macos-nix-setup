@@ -36,6 +36,7 @@
     imagemagick7
     liberation_ttf
     rustc
+    inetutils
     nodePackages.grunt-cli
     mercurial
     zsh
