@@ -2,15 +2,15 @@
 {
   programs.mercurial = {
     enable = true;
-    userName = "USERFULLNAME";
-    userEmail = "USEREMAIL";
+    userName = "Sebastian Wehrmann";
+    userEmail = "sebastian@risclog.com";
 
     iniContent.extensions.fetch= "";
     ignores = [ "*~" "*.swp" ];
     extraConfig = {
         auth."risclog.prefix" = "https://repos.risclog.de/";
-        auth."risclog.username" = "USERREPOSUSERNAME";
-        auth."risclog.password" = "USERREPOSPASSWORD";
+        auth."risclog.username" = "sweh";
+        auth."risclog.password" = "See5shah";
         changelog.filename = "CHANGES.rst";
         ui.merge = "internal:merge3";
     };

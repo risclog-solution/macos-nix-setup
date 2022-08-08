@@ -25,6 +25,7 @@
     postgresql_14
     file
     pre-commit
+    ruby_2_6
     binutils
     openjdk11
     coreutils
