@@ -328,6 +328,13 @@ then
     cp config/redis.conf /etc/local/redis/
 fi
 
+if ! [ -d "/etc/local/fakes3/data" ]
+then
+    execute_sudo "${MKDIR[@]}" "/etc/local/fakes3/data"
+    execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/fakes3/data"
+    gem install fakes3
+fi
+
 if ! [ -d "/etc/local/nginx" ]
 then
     execute_sudo "${MKDIR[@]}" "/etc/local/nginx/servers"
