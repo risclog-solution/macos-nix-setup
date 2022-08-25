@@ -234,6 +234,7 @@ Plugin 'dbakker/vim-projectroot'
 Plugin 'vim-airline/vim-airline'
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'psf/black'
+Plugin 'mileszs/ack.vim'
 "Plugin 'neoclide/coc.nvim', {'pinned': 1}
 "Plugin 'mileszs/ack.vim'
 "Bundle 'xolox/vim-misc'
