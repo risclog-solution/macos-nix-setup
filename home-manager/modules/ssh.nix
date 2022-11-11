@@ -15,6 +15,7 @@
               UseKeychain = "yes";
               AddKeysToAgent = "yes";
               IdentityFile = "~/.ssh/id_rsa";
+              PubkeyAcceptedKeyTypes = "+ssh-rsa";
             };
         };
         "flyingcircus-jump-host" = {
