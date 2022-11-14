@@ -19,7 +19,7 @@
     libxslt
     libffi.dev
     libffi.out
-    mailsend
+    # mailsend  # currently not supported under M1
     haskellPackages.cryptohash-sha256
     libxml2
     readline
