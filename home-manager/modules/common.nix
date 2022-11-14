@@ -19,6 +19,7 @@
     libxslt
     libffi.dev
     libffi.out
+    mailsend
     haskellPackages.cryptohash-sha256
     libxml2
     readline
