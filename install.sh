@@ -216,7 +216,6 @@ then
     read USERFULLNAME
 fi
 sed -i -- "s/USERFULLNAME/$USERFULLNAME/" home-manager/modules/git.nix
-sed -i -- "s/USERFULLNAME/$USERFULLNAME/" home-manager/modules/hg.nix
 
 if ! [[ -n $USEREMAIL ]]
 then
@@ -224,7 +223,6 @@ then
     read USEREMAIL
 fi
 sed -i -- "s/USEREMAIL/$USEREMAIL/" home-manager/modules/git.nix
-sed -i -- "s/USEREMAIL/$USEREMAIL/" home-manager/modules/hg.nix
 
 if ! [[ -n $GPGPUBKEY ]]
 then
@@ -243,14 +241,12 @@ then
     ohai "Enter your username for repos.risclog.de:"
     read USERREPOSUSERNAME
 fi
-sed -i -- "s/USERREPOSUSERNAME/$USERREPOSUSERNAME/" home-manager/modules/hg.nix
 
 if ! [[ -n $USERREPOSPASSWORD ]]
 then
     ohai "Enter your password for repos.risclog.de:"
     read USERREPOSPASSWORD
 fi
-sed -i -- "s/USERREPOSPASSWORD/$USERREPOSPASSWORD/" home-manager/modules/hg.nix
 
 if ! [[ -n $USEONEPASSWORDAGENT ]]
 then
@@ -347,8 +343,7 @@ then
     cp config/mime.types /etc/local/nginx/
 fi
 
-ohai "Link hgrc to HOME"
-ln -s ~/.config/hg/hgrc ~/.hgrc
+ohai "Link gitconfig to HOME"
 ln -s ~/.config/git/config ~/.gitconfig
 
 ohai "Opening iTerm, your new terminal app. If fonts are not shown correctly, run `p10k configure` once to install NerdFont."
