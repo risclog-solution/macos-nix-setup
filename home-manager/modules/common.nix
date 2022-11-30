@@ -34,6 +34,7 @@
     poppler_utils
     qpdf
     ghostscript
+    swig
     zoxide
     imagemagick7
     liberation_ttf
