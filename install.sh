@@ -201,8 +201,6 @@ else
     USERFULLNAME=""
     USEREMAIL=""
     GPGPUBKEY=""
-    USERREPOSUSERNAME=""
-    USERREPOSPASSWORD=""
     USEONEPASSWORDAGENT=""
 fi
 
@@ -236,18 +234,6 @@ else
     sed -i -- "s/SIGNINGKEY/$GPGPUBKEY/" home-manager/modules/git.nix;
 fi
 
-if ! [[ -n $USERREPOSUSERNAME ]]
-then
-    ohai "Enter your username for repos.risclog.de:"
-    read USERREPOSUSERNAME
-fi
-
-if ! [[ -n $USERREPOSPASSWORD ]]
-then
-    ohai "Enter your password for repos.risclog.de:"
-    read USERREPOSPASSWORD
-fi
-
 if ! [[ -n $USEONEPASSWORDAGENT ]]
 then
     ohai "Use 1Password 8 SSH agent? (y/n)"
@@ -265,8 +251,6 @@ fi
 echo "USERFULLNAME=\"$USERFULLNAME\"" > $CONFIG
 echo "USEREMAIL=\"$USEREMAIL\"" >> $CONFIG
 echo "GPGPUBKEY=\"$GPGPUBKEY\"" >> $CONFIG
-echo "USERREPOSUSERNAME=\"$USERREPOSUSERNAME\"" >> $CONFIG
-echo "USERREPOSPASSWORD=\"$USERREPOSPASSWORD\"" >> $CONFIG
 echo "USEONEPASSWORDAGENT=\"$USEONEPASSWORDAGENT\"" >> $CONFIG
 
 if ! [[ -x "$(command -v nix-env)" ]]
