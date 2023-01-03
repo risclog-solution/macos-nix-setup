@@ -19,7 +19,7 @@
             };
         };
         "flyingcircus-jump-host" = {
-            hostname = "clxstagc00.fe.rzob.fcio.net";
+            hostname = "c0.rldev.fcio.net";
             user = "${config.home.username}";
         };
         "*.fcio.net" = {
