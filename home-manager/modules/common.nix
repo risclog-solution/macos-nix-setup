@@ -33,8 +33,7 @@
     geckodriver
     poppler_utils
     qpdf
-    ghostscript
-    texlive.combined.scheme-medium
+    texlive.combined.scheme-full
     swig
     zoxide
     imagemagick7
