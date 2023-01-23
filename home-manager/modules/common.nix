@@ -34,7 +34,7 @@
     poppler_utils
     qpdf
     ghostscript
-    texlive.combined.scheme-full
+    texlive.combined.scheme-medium
     swig
     zoxide
     imagemagick7
