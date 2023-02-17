@@ -28,7 +28,7 @@
         "*.gocept.net" = {
             proxyJump = "flyingcircus-jump-host";
         };
-        "kravag* clx* claimx* risclog* rlservices*" = {
+        "kravag* clx* claimx* mci* risclog* rlservices* rliam*" = {
             proxyJump = "flyingcircus-jump-host";
         };
         "rldev.fcio.net" = {
