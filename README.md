@@ -1,15 +1,17 @@
 Setup development environment for Mac using Nix
 ===============================================
 
+First install and update
+------------------------
 
-Run install script:
+Just run this install script from your terminal:
 
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/risclog-solution/macos-nix-setup/HEAD/install.sh)"
 ```
 
-Restore Mac from Time Machine backup
-------------------------------------
+Restore from Time Machine backup
+--------------------------------
 
 When using Time Machine, the “Nix Store” volume will be backed-up just as the Recovery volume, but it *won’t be restored* when restoring a Time Machine Backup in macOS Recovery. However, we can still manually restore the Nix Store volume from a Time Machine backup in macOS by using `rsync` or `tmutil restore`.
 
