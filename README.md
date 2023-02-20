@@ -51,18 +51,13 @@ You should see the correct output:
 
 ```
 $ nix-shell -p nix-info --run "nix-info -m" --show-trace
-- system:
-'"×86_64-darwin"
-- host os: 'Darwin 19.3.0, macOS 10.15.3*
-- multi-user?•
-" no
-- sandbox: 'no
-- version:
-nix-env (Nix) 2.3.3*
-- channels (root) :
-'"nixpkgs-20.09pre215033.ddc2f887f5f'*
-- nixpkgs:
-/nix/var/nix/profiles/per-user/ root/channels/nixpkgs
+- system: `"×86_64-darwin"`
+- host os: `Darwin 19.3.0, macOS 10.15.3`
+- multi-user?: `no`
+- sandbox: `no`
+- version: `nix-env (Nix) 2.3.3`
+- channels (root): `"nixpkgs-20.09pre215033.ddc2f887f5f"`
+- nixpkgs: `/nix/var/nix/profiles/per-user/ root/channels/nixpkgs`
 ```
 
 `nix-daemon` should be started correctly with `launchctl` on the next reboot, or you can start it directly by using `sudo launchctl kickstart -k system/org.nixos.nix-daemon`.
