@@ -13,6 +13,7 @@
       extraConfig = ''
         eval "$(zoxide init zsh)"
         export LANG=de_DE.UTF-8
+        export PIP_REQUIRE_VIRTUALENV=1
         export PATH=${config.home.homeDirectory}/.local/bin:$PATH
 
         if [[ -n $SSH_CONNECTION ]]; then
