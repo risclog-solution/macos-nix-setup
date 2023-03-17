@@ -327,9 +327,22 @@ then
     cp config/mime.types /etc/local/nginx/
 fi
 
+if ! [[ -x "$(command -v watch_gha_runs)" ]]
+then
+    ohai "Installing watch_gha_runs."
+    execute "pipx install git+https://github.com/nedbat/watchgha"
+    cp config/netrc "/Users/$USER/.netrc"
+fi
+
+if ! [[ -x "$(command -v fullrelease)" ]]
+then
+    ohai "Installing zest.releaser."
+    execute "pipx install zest.releaser"
+fi
+
 ohai "Link gitconfig to HOME"
 ln -s ~/.config/git/config ~/.gitconfig
 
-ohai "Opening iTerm, your new terminal app. If fonts are not shown correctly, run `p10k configure` once to install NerdFont."
+ohai "Opening iTerm, your new terminal app. If fonts are not shown correctly, run 'p10k configure' once to install NerdFont."
 open -a iTerm .
 ohai "Installation successfull. Please close this window now."

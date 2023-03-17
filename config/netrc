@@ -1,0 +1,7 @@
+machine github.com
+login sweh
+password GITHUB_TOKEN
+
+machine api.github.com
+login sweh
+password GITHUB_TOKEN
