@@ -86,6 +86,7 @@
       alias.sh = "!git-sh";
       alias.stm = "status --untracked=no";
       alias.stfu = "status --untracked=no";
+      alias.runs = "!f() { watch_gha_runs \"$(git remote get-url origin)\" \"$(git rev-parse --abbrev-ref HEAD)\"; }; f";
 
       oh-my-zsh.hide-info = 0;
 

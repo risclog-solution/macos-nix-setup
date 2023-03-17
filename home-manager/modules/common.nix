@@ -11,6 +11,7 @@
     act
     xz
     mkcert
+    gettext
     nss.tools
     zlib.dev
     zlib.out
@@ -35,6 +36,7 @@
     geckodriver
     poppler_utils
     qpdf
+    pdftk
     texlive.combined.scheme-full
     swig
     zoxide
@@ -62,6 +64,7 @@
     cookiecutter
     black
     python38Packages.flake8
+    python39Packages.pipx
     sphinx
 
     # Requires a patched font
@@ -84,6 +87,7 @@
     python37
     python38
     python39
+    python310
     jq
     go
     cloc
