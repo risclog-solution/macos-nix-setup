@@ -11,6 +11,7 @@
             extraOptions = {
               1PASSWORD_SSH_AGENT_CONFIG
               strictHostKeyChecking = "no";
+              VisualHostKey = "yes";
               IgnoreUnknown = "UseKeyChain,AddKeysToAgent,IdentityFile";
               UseKeychain = "yes";
               AddKeysToAgent = "yes";
