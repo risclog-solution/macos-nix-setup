@@ -236,6 +236,7 @@ Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'psf/black'
 Plugin 'mileszs/ack.vim'
 Plugin 'rizzatti/dash.vim'
+Plugin 'github/copilot.vim'
 "Plugin 'neoclide/coc.nvim', {'pinned': 1}
 "Bundle 'xolox/vim-misc'
 "Bundle 'xolox/vim-easytags'
