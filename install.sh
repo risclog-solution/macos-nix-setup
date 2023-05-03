@@ -340,6 +340,12 @@ then
     execute "pipx install zest.releaser"
 fi
 
+if ! [[ -x "$(command -v ruff)" ]]
+then
+    ohai "Installing ruff."
+    execute "pipx install ruff"
+fi
+
 ohai "Link gitconfig to HOME"
 ln -s ~/.config/git/config ~/.gitconfig
 
