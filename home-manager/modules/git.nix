@@ -49,7 +49,7 @@
       tag.forceSignAnnotated = true;
 
       changelog.filename = "CHANGES.rst";
-      changelog.preprocess = "lambda x: re.sub('(^.*) ?\\(([A-Z]+-[0-9]+)\\)\\.?$', r'Re \\2: \\1', x)";
+      changelog.preprocess = "lambda x: ' '.join([l.strip() for l in x.splitlines() if l.strip()]).replace('https://redmine.risclog.de/issues/', '#').split(': ', 1)[1]"
 
       init.defaultBranch = "master";
       init.templatedir = "~/.git-templates";
