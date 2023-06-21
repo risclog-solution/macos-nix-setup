@@ -6,6 +6,7 @@
   programs.direnv.nix-direnv.enable = true;
 
   home.packages = with pkgs; [
+    zopfli.dev
     ack
     gdb
     act
