@@ -350,7 +350,8 @@ ohai "Link gitconfig to HOME"
 ln -s ~/.config/git/config ~/.gitconfig
 
 ohai "Link libs"
-mkdir -p /opt/homebrew/
+mkdir -p /opt/homebrew/var/run
+mkdir -p /opt/homebrew/var/db/redis
 ln -s ~/.nix-profile/lib/ /opt/homebrew/lib
 
 ohai "Opening iTerm, your new terminal app. If fonts are not shown correctly, run 'p10k configure' once to install NerdFont."
