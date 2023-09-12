@@ -33,7 +33,7 @@
     pre-commit
     ruby
     binutils
-    openjdk11
+    jdk11.out
     coreutils
     geckodriver
     poppler_utils
