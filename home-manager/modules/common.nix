@@ -8,8 +8,8 @@
   home.packages = with pkgs; [
     gnused.out
     zopfli.dev
+    tmate
     ack
-    gdb
     act
     xz
     mkcert
@@ -84,9 +84,7 @@
 
     yarn
     neovim
-    python27
     virtualenv
-    python37
     python38
     python39
     python310

@@ -87,6 +87,7 @@
       alias.stm = "status --untracked=no";
       alias.stfu = "status --untracked=no";
       alias.runs = "!f() { watch_gha_runs \"$(git remote get-url origin)\" \"$(git rev-parse --abbrev-ref HEAD)\"; }; f";
+      alias.cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 -r git branch -d";
 
       oh-my-zsh.hide-info = 0;
 
