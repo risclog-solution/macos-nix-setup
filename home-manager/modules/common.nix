@@ -35,6 +35,7 @@
     binutils
     jdk11.out
     coreutils
+    ghostscript
     geckodriver
     poppler_utils
     qpdf
