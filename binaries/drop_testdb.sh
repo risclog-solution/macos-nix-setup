@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3.8
 
 import subprocess
 import re
@@ -13,10 +13,11 @@ parser.add_argument(
 
 options = parser.parse_args()
 db_list = subprocess.check_output("psql -l", shell=True)
-for entry in db_list.split('\n'):
+for entry in db_list.splitlines():
     if not entry:
         continue
-    db_name = re.sub('\s+', ' ', entry).strip().split()[0]
+    db_name = re.sub(b'\s+', b' ', entry).strip().split()[0]
+    db_name = db_name.decode()
     if not db_name.startswith(options.prefix):
         continue
     print('dropdb {}'.format(db_name))
