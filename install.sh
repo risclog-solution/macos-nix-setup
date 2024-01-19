@@ -268,7 +268,7 @@ if ! [[ -x "$(command -v home-manager)" ]]
 then
     ohai "Installing home manager"
     # nix-env -iA nixpkgs.nixFlakes
-    nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz home-manager
+    nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz home-manager
     nix-channel --update
     mkdir -p "/Users/$USER/.config/nix/"
     echo "experimental-features = nix-command flakes" > "/Users/$USER/.config/nix/nix.conf"

@@ -14,6 +14,7 @@
     xz
     mkcert
     gettext
+    lazygit
     nss.tools
     zlib.dev
     zlib.out
