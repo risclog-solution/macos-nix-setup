@@ -31,6 +31,8 @@
   # nixpkgs.config.allowUnfree = true;
   nixpkgs.config.packageOverrides = pkgs:
     {
+      python312 = pkgs.python312.overrideAttrs (attrs:
+        pkgs.lib.attrsets.recursiveUpdate attrs { meta.priority = 30; });
       python310 = pkgs.python310.overrideAttrs (attrs:
         pkgs.lib.attrsets.recursiveUpdate attrs { meta.priority = 50; });
       python39 = pkgs.python39.overrideAttrs (attrs:

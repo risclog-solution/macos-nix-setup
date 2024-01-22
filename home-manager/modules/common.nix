@@ -67,7 +67,7 @@
     twine
     cookiecutter
     black
-    python38Packages.flake8
+    python39Packages.flake8
     python39Packages.pipx
     sphinx
 
@@ -91,6 +91,7 @@
     python39
     python310
     python311
+    python312
     jq
     go
     cloc
