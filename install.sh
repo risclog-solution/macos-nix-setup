@@ -313,6 +313,7 @@ if ! [ -d "/etc/local/fakes3/data" ]
 then
     execute_sudo "${MKDIR[@]}" "/etc/local/fakes3/data"
     execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/fakes3/data"
+    gem install webrick
     gem install fakes3
 fi
 

@@ -47,7 +47,7 @@
   };
 
   launchd.user.agents.fakes3 = {
-    command = "$HOME/.gem/ruby/2.7.0/bin/fakes3 -r /etc/local/fakes3/data -p 9000 --license 5905935126";
+    command = "$HOME/.gem/ruby/3.1.0/bin/fakes3 -r /etc/local/fakes3/data -p 9000 --license 5905935126";
     serviceConfig = {
       KeepAlive = true;
       RunAtLoad = true;
