@@ -15,7 +15,7 @@
               IgnoreUnknown = "UseKeyChain,AddKeysToAgent,IdentityFile";
               UseKeychain = "yes";
               AddKeysToAgent = "yes";
-              IdentityFile = "~/.ssh/ed25519";
+              IdentityFile = "~/.ssh/id_ed25519";
               PubkeyAcceptedKeyTypes = "+ssh-rsa";
             };
         };
