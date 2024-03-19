@@ -19,7 +19,6 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 import io
-import re
 import subprocess
 import sys
 
@@ -49,6 +48,7 @@ def main():
 
     preprocess = cmd('git config --get changelog.preprocess')
     if preprocess:
+        import re
         preprocess = eval(
             preprocess, {'re': re, '__builtins__': __builtins__})
         changelog = preprocess(changelog)
@@ -69,12 +69,11 @@ def get_diff(filename):
     return result
 
 
-_bullet_re = re.compile(r'\s*[-+*]\s+')
-
-
 # Taken from <https://bitbucket.org/birkenfeld/hgchangelog>
 def normalize_log(lines):
     """Outdents newly inserted list items."""
+    import re
+    _bullet_re = re.compile(r'\s*[-+*]\s+')
     last_indention = 0
     for idx, line in enumerate(lines):
         match = _bullet_re.match(line)
