@@ -36,7 +36,7 @@
     pre-commit
     ruby
     binutils
-    jdk11.out
+    jdk17.out
     coreutils
     ghostscript
     geckodriver
