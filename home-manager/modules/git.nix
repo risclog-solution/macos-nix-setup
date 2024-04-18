@@ -5,7 +5,7 @@
     userName = "USERFULLNAME";
     userEmail = "USEREMAIL";
 
-    signing.key = "SIGNINGKEY";
+    signing.key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK0TvIBhBCZnD8Ct2hGx2MAI0qdQELqicmIAVzQzV3YH";
 
     delta = {
       enable = false;
@@ -47,6 +47,8 @@
       push.autoSetupRemote = true;
 
       tag.forceSignAnnotated = true;
+      gpg.format = "ssh";
+      gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
 
       changelog.filename = "CHANGES.rst";
       changelog.preprocess = "lambda x: ' '.join([l.strip() for l in x.splitlines() if l.strip()]).replace('https://redmine.risclog.de/issues/', '#')";
@@ -86,10 +88,14 @@
       alias.sh = "!git-sh";
       alias.stm = "status --untracked=no";
       alias.stfu = "status --untracked=no";
+      alias.persona = "!git-persona";
       alias.runs = "!f() { watch_gha_runs \"$(git remote get-url origin)\" \"$(git rev-parse --abbrev-ref HEAD)\"; }; f";
       alias.cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 -r git branch -d";
 
       oh-my-zsh.hide-info = 0;
+
+      persona.home = "Sebastian Wehrmann <sebastian@wehrmann.it>";
+      persona.work = "Sebastian Wehrmann <sebastian@risclog.com>";
 
       filter.lfs.required = true;
       filter.lfs.smudge = "git-lfs smudge -- %f";
