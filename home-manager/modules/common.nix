@@ -16,6 +16,7 @@
     gettext
     lazygit
     nss.tools
+    cocoapods
     zlib.dev
     zlib.out
     libjpeg.dev
