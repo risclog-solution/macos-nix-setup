@@ -6,12 +6,17 @@
   programs.direnv.nix-direnv.enable = true;
 
   home.packages = with pkgs; [
+    age
+    pwgen
+    glib
     gnused.out
     zopfli.dev
     tmate
     ack
     act
     xz
+    dogdns
+    step-cli
     mkcert
     gettext
     lazygit
