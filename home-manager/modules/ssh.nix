@@ -9,7 +9,7 @@
             serverAliveInterval = 15;
             serverAliveCountMax = 3;
             extraOptions = {
-              identityAgent = "\"${config.home.homeDirectory}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\"";
+              1PASSWORD_SSH_AGENT_CONFIG
               strictHostKeyChecking = "no";
               VisualHostKey = "yes";
               IgnoreUnknown = "UseKeyChain,AddKeysToAgent,IdentityFile";
