@@ -9,7 +9,7 @@
             serverAliveInterval = 15;
             serverAliveCountMax = 3;
             extraOptions = {
-              1PASSWORD_SSH_AGENT_CONFIG
+              identityAgent = "\"${config.home.homeDirectory}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\"";
               strictHostKeyChecking = "no";
               VisualHostKey = "yes";
               IgnoreUnknown = "UseKeyChain,AddKeysToAgent,IdentityFile";
@@ -20,7 +20,7 @@
             };
         };
         "flyingcircus-jump-host" = {
-            hostname = "rldev.fcio.net";
+            hostname = "dev.risclog.net";
             user = "${config.home.username}";
         };
         "*.fcio.net" = {
@@ -32,7 +32,7 @@
         "kravag* clx* claimx* mci* risclog* rlservices* gha*" = {
             proxyJump = "flyingcircus-jump-host";
         };
-        "rldev.fcio.net" = {
+        "dev.risclog.net" = {
             proxyJump = "none";
         };
     };
