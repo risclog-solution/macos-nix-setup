@@ -25,3 +25,13 @@ rm /Users/<USER>/.local/state/home-manager/gcroots/current-home
 ```
 
 Then, after a reboot, you can install everything from scatch.
+
+
+Problems with Nix Users after Update to MacOS 15 Sequoia
+--------------------------------------------------------
+
+If you get errors after updating to MacOS 15 Sequoia like `error: the user '_nixbld1' in the group 'nixbld' does not exist`, you can fix this by running the following commands:
+
+```
+curl --proto '=https' --tlsv1.2 -sSf -L https://github.com/NixOS/nix/raw/master/scripts/sequoia-nixbld-user-migration.sh | bash -
+```
