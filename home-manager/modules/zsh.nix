@@ -16,6 +16,8 @@
         export LANG=de_DE.UTF-8
         export PIP_REQUIRE_VIRTUALENV=1
         export PATH=${config.home.homeDirectory}/.local/bin:$PATH
+        export POSTGRES_USER=kravagtest
+        export POSTGRES_PASS=asdf
 
         if [[ -n $SSH_CONNECTION ]]; then
           export EDITOR='vim'
