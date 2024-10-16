@@ -256,7 +256,7 @@ echo "USEONEPASSWORDAGENT=\"$USEONEPASSWORDAGENT\"" >> $CONFIG
 if ! [[ -x "$(command -v nix-env)" ]]
 then
     ohai "Installing nix. Answer always y."
-    sh <(curl -L https://releases.nixos.org/nix/nix-2.9.1/install)
+    NIX_FIRST_BUILD_UID=30001 sh <(curl -L https://releases.nixos.org/nix/install)
 fi
 if ! [[ -x "$(command -v nix-env)" ]]
 then
