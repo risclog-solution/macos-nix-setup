@@ -35,3 +35,18 @@ If you get errors after updating to MacOS 15 Sequoia like `error: the user '_nix
 ```
 curl --proto '=https' --tlsv1.2 -sSf -L https://github.com/NixOS/nix/raw/master/scripts/sequoia-nixbld-user-migration.sh | bash -
 ```
+
+
+Version mismatch nixpkgs and home-manager
+-----------------------------------------
+
+When installing from scratch its possible that the newest nixpkgs are installed
+instead of the pinned version. The installation if home-manager will fail then.
+
+To fix this, you can run the following commands:
+
+```
+nix-channel --list
+nix-channel --remove nixpkgs
+nix-channel --add https://nixos.org/channels/nixos-23.11 nixpkgs
+```
