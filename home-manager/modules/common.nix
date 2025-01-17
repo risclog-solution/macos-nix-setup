@@ -1,9 +1,13 @@
-{ config, pkgs, libs, ... }:
+{ config, pkgs, libs, lib, nixpkgs, ... }:
 {
 
   # https://github.com/nix-community/nix-direnv#via-home-manager
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+
+  ];
 
   home.packages = with pkgs; [
     gnused.out
@@ -16,7 +20,6 @@
     gettext
     lazygit
     nss.tools
-    cocoapods
     zlib.dev
     zlib.out
     libjpeg.dev
@@ -43,16 +46,16 @@
     geckodriver
     poppler_utils
     qpdf
-    pdftk
+    #pdftk
     texlive.combined.scheme-full
     swig
     zoxide
-    imagemagick7
+    imagemagick
     liberation_ttf
     rustc
     inetutils.out
     nodePackages.grunt-cli
-    mercurial
+    # mercurial
     zsh
     ctags
     oh-my-zsh
@@ -66,12 +69,12 @@
     bat
     bottom
     fzf
-    magic-wormhole
-    twine
-    cookiecutter
-    black
-    python39Packages.flake8
-    python39Packages.pipx
+    # magic-wormhole
+    # python310Packages.twine
+    # python310Packages.cookiecutter
+    # python310Packages.black
+    # python310Packages.flake8
+    python310Packages.pipx
     sphinx
 
     # Requires a patched font
@@ -84,24 +87,19 @@
     graphviz
     git-crypt
 
-    youtube-dl
     watchman
 
     yarn
     neovim
-    virtualenv
-    python38
     python39
     python310
     python311
-        # python312
+    # python312
     jq
-    go
     cloc
     docker
     docker-compose
     # Nix VSC
-    rnix-lsp
     nixpkgs-fmt
     # github cli
     gitAndTools.gh

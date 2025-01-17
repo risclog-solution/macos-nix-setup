@@ -264,12 +264,18 @@ then
     exit 1
 fi
 
+ohai "Updating nix channels"
+nix-channel --add https://channels.nixos.org/nixos-24.11 nixpkgs
+nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz home-manager
+nix-channel --add https://github.com/LnL7/nix-darwin/archive/nix-darwin-24.11.tar.gz darwin
+nix-channel --add https://github.com/LnL7/nix-darwin/archive/nix-darwin-24.11.tar.gz nix-darwin
+nix-channel --update
+nix flake update
+
 if ! [[ -x "$(command -v home-manager)" ]]
 then
     ohai "Installing home manager"
     # nix-env -iA nixpkgs.nixFlakes
-    nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz home-manager
-    nix-channel --update
     mkdir -p "/Users/$USER/.config/nix/"
     echo "experimental-features = nix-command flakes" > "/Users/$USER/.config/nix/nix.conf"
     # nix-env -e nix-2.9.1
@@ -328,23 +334,47 @@ then
     cp config/mime.types /etc/local/nginx/
 fi
 
+if ! [[ -x "$(command -v black)" ]]
+then
+    ohai "Installing black."
+    pipx install black
+fi
+
+if ! [[ -x "$(command -v twine)" ]]
+then
+    ohai "Installing twine."
+    pipx install twine
+fi
+
+if ! [[ -x "$(command -v cookiecutter)" ]]
+then
+    ohai "Installing cookiecutter."
+    pipx install cookiecutter
+fi
+
+if ! [[ -x "$(command -v wormhole)" ]]
+then
+    ohai "Installing wormhole."
+    pipx install magic-wormhole
+fi
+
 if ! [[ -x "$(command -v watch_gha_runs)" ]]
 then
     ohai "Installing watch_gha_runs."
-    execute "pipx install git+https://github.com/nedbat/watchgha"
+    pipx install git+https://github.com/nedbat/watchgha
     cp config/netrc "/Users/$USER/.netrc"
 fi
 
 if ! [[ -x "$(command -v fullrelease)" ]]
 then
     ohai "Installing zest.releaser."
-    execute "pipx install zest.releaser"
+    pipx install zest.releaser
 fi
 
 if ! [[ -x "$(command -v ruff)" ]]
 then
     ohai "Installing ruff."
-    execute "pipx install ruff"
+    pipx install ruff
 fi
 
 ohai "Link gitconfig to HOME"
