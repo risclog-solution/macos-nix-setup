@@ -5,6 +5,7 @@
     shellAliases = {
       v = "open -a MacVim $argv";
       lg = "lazygit";
+      cd = "z";
       gig = "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(bold black)%s%C(reset) %C(black)- %an%C(reset)' --all";
     };
     oh-my-zsh = {
