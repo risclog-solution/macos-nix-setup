@@ -10,7 +10,7 @@
 
   outputs = { nixpkgs, home-manager, ... } @ inputs: {
     homeConfigurations = {
-      rlmbp2022 = home-manager.lib.homeManagerConfiguration {
+      rlmbp2025 = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
         modules = [
           ./home-manager/modules/home-manager.nix
@@ -21,8 +21,8 @@
           ./home-manager/mac.nix
           {
             home = {
-              username = "USERNAME";
-              homeDirectory = "/Users/USERNAME";
+              username = "sweh";
+              homeDirectory = "/Users/sweh";
               stateVersion = "24.11";
             };
           }

@@ -296,7 +296,7 @@ fi
 
 ohai "Switching to new system configuration"
 have_sudo_access
-home-manager switch --flake .#rlmbp2022
+home-manager switch --flake .#rlmbp2025
 
 cp darwin-configuration.nix /Users/$USER/.nixpkgs/
 darwin-rebuild switch
