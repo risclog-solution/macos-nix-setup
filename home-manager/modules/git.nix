@@ -2,10 +2,9 @@
 {
   programs.git = {
     enable = true;
-    userName = "Sebastian Wehrmann";
-    userEmail = "sebastian@risclog.com";
-
-    signing.key = "416EF9DA22BA2C40";
+    userName = "USERFULLNAME";
+    userEmail = "USEREMAIL";
+    signing.key = "SIGNINGKEY";
 
     delta = {
       enable = false;

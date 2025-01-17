@@ -21,8 +21,8 @@
           ./home-manager/mac.nix
           {
             home = {
-              username = "sweh";
-              homeDirectory = "/Users/sweh";
+              username = "USERNAME";
+              homeDirectory = "/Users/USERNAME";
               stateVersion = "24.11";
             };
           }
