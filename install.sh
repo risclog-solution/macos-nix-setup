@@ -268,7 +268,12 @@ fi
 
 ohai "Updating nix flakes"
 cp darwin-configuration.nix /Users/$USER/.nixpkgs/
-darwin-rebuild switch --flake /opt/nixpkgs/
+if ! [[ -x "$(command -v darwin-rebuild)" ]]
+then
+    nix run nix-darwin -- switch --flake /opt/nixpkgs/
+else
+    darwin-rebuild switch --flake /opt/nixpkgs/
+fi
 
 if ! [[ -x "$(command -v home-manager)" ]]
 then
