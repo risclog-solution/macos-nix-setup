@@ -10,7 +10,11 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, ... } @ inputs: {
+  outputs = { nixpkgs, nix-darwin, home-manager, ... } @ inputs: {
+    darwinConfigurations."HOSTNAME" = nix-darwin.lib.darwinSystem {
+      pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+      modules = [ ./darwin-configuration.nix ];
+    };
     homeConfigurations = {
       rlmbp2025 = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;

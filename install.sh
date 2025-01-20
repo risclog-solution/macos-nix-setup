@@ -204,6 +204,8 @@ else
     USEONEPASSWORDAGENT=""
 fi
 
+sed -i -- "s/HOSTNAME/$(scutil --get LocalHostName)/" flake.nix
+
 ohai "Change config to current user $USER"
 sed -i -- "s/USERNAME/$USER/" flake.nix
 sed -i -- "s/USERNAME/$USER/" darwin-configuration.nix
@@ -264,16 +266,18 @@ then
     exit 1
 fi
 
-ohai "Updating nix channels"
-nix-channel --add https://channels.nixos.org/nixos-24.11 nixpkgs
-nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz home-manager
-nix-channel --add https://github.com/LnL7/nix-darwin/archive/nix-darwin-24.11.tar.gz darwin
-nix-channel --add https://github.com/LnL7/nix-darwin/archive/nix-darwin-24.11.tar.gz nix-darwin
-nix-channel --update
-nix flake update
+# ohai "Updating nix channels"
+# nix-channel --add https://channels.nixos.org/nixos-24.11 nixpkgs
+# nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz home-manager
+# nix-channel --add https://github.com/LnL7/nix-darwin/archive/nix-darwin-24.11.tar.gz darwin
+# nix-channel --add https://github.com/LnL7/nix-darwin/archive/nix-darwin-24.11.tar.gz nix-darwin
+# nix-channel --update
+# nix flake update
 
 if ! [[ -x "$(command -v home-manager)" ]]
 then
+    ohai "Updating nix flakes"
+    darwin-rebuild switch --flake /opt/nixpkgs/
     ohai "Installing home manager"
     # nix-env -iA nixpkgs.nixFlakes
     mkdir -p "/Users/$USER/.config/nix/"
@@ -379,11 +383,6 @@ fi
 
 ohai "Link gitconfig to HOME"
 ln -s ~/.config/git/config ~/.gitconfig
-
-ohai "Link libs"
-mkdir -p /opt/homebrew/var/run
-mkdir -p /opt/homebrew/var/db/redis
-ln -s ~/.nix-profile/lib/ /opt/homebrew/lib
 
 ohai "Opening iTerm, your new terminal app. If fonts are not shown correctly, run 'p10k configure' once to install NerdFont."
 open -a iTerm .
