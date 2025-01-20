@@ -266,13 +266,7 @@ then
     exit 1
 fi
 
-# ohai "Updating nix channels"
-# nix-channel --add https://channels.nixos.org/nixos-24.11 nixpkgs
-# nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz home-manager
-# nix-channel --add https://github.com/LnL7/nix-darwin/archive/nix-darwin-24.11.tar.gz darwin
-# nix-channel --add https://github.com/LnL7/nix-darwin/archive/nix-darwin-24.11.tar.gz nix-darwin
-# nix-channel --update
-# nix flake update
+cp darwin-configuration.nix /Users/$USER/.nixpkgs/
 
 if ! [[ -x "$(command -v home-manager)" ]]
 then
@@ -286,24 +280,9 @@ then
     NIX_PATH="/Users/$USER/.nix-defexpr/channels:nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels" nix-shell '<home-manager>' -A install
 fi
 
-if ! [[ -x "$(command -v darwin-rebuild)" ]]
-then
-    ohai "Installing darwin-rebuild. Answer n and then always y."
-    nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
-    ./result/bin/darwin-installer
-fi
-if ! [[ -x "$(command -v darwin-rebuild)" ]]
-then
-    ohai "Please restart terminal to finish nix-darwin installation"
-    exit 1
-fi
-
 ohai "Switching to new system configuration"
 have_sudo_access
 home-manager switch --flake .#rlmbp2025
-
-cp darwin-configuration.nix /Users/$USER/.nixpkgs/
-darwin-rebuild switch
 
 if ! [ -d "/etc/local/postgres/data" ]
 then
