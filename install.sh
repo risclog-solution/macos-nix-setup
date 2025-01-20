@@ -322,47 +322,50 @@ then
     cp config/mime.types /etc/local/nginx/
 fi
 
-if ! [[ -x "$(command -v black)" ]]
+if [[ -x "$(command -v pipx)" ]]
 then
-    ohai "Installing black."
-    pipx install black
-fi
+    if ! [[ -x "$(command -v black)" ]]
+    then
+        ohai "Installing black."
+        pipx install black
+    fi
 
-if ! [[ -x "$(command -v twine)" ]]
-then
-    ohai "Installing twine."
-    pipx install twine
-fi
+    if ! [[ -x "$(command -v twine)" ]]
+    then
+        ohai "Installing twine."
+        pipx install twine
+    fi
 
-if ! [[ -x "$(command -v cookiecutter)" ]]
-then
-    ohai "Installing cookiecutter."
-    pipx install cookiecutter
-fi
+    if ! [[ -x "$(command -v cookiecutter)" ]]
+    then
+        ohai "Installing cookiecutter."
+        pipx install cookiecutter
+    fi
 
-if ! [[ -x "$(command -v wormhole)" ]]
-then
-    ohai "Installing wormhole."
-    pipx install magic-wormhole
-fi
+    if ! [[ -x "$(command -v wormhole)" ]]
+    then
+        ohai "Installing wormhole."
+        pipx install magic-wormhole
+    fi
 
-if ! [[ -x "$(command -v watch_gha_runs)" ]]
-then
-    ohai "Installing watch_gha_runs."
-    pipx install git+https://github.com/nedbat/watchgha
-    cp config/netrc "/Users/$USER/.netrc"
-fi
+    if ! [[ -x "$(command -v watch_gha_runs)" ]]
+    then
+        ohai "Installing watch_gha_runs."
+        pipx install git+https://github.com/nedbat/watchgha
+        cp config/netrc "/Users/$USER/.netrc"
+    fi
 
-if ! [[ -x "$(command -v fullrelease)" ]]
-then
-    ohai "Installing zest.releaser."
-    pipx install zest.releaser
-fi
+    if ! [[ -x "$(command -v fullrelease)" ]]
+    then
+        ohai "Installing zest.releaser."
+        pipx install zest.releaser
+    fi
 
-if ! [[ -x "$(command -v ruff)" ]]
-then
-    ohai "Installing ruff."
-    pipx install ruff
+    if ! [[ -x "$(command -v ruff)" ]]
+    then
+        ohai "Installing ruff."
+        pipx install ruff
+    fi
 fi
 
 ohai "Link gitconfig to HOME"
