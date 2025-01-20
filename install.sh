@@ -266,12 +266,12 @@ then
     exit 1
 fi
 
+ohai "Updating nix flakes"
 cp darwin-configuration.nix /Users/$USER/.nixpkgs/
+darwin-rebuild switch --flake /opt/nixpkgs/
 
 if ! [[ -x "$(command -v home-manager)" ]]
 then
-    ohai "Updating nix flakes"
-    darwin-rebuild switch --flake /opt/nixpkgs/
     ohai "Installing home manager"
     # nix-env -iA nixpkgs.nixFlakes
     mkdir -p "/Users/$USER/.config/nix/"
