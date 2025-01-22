@@ -69,11 +69,6 @@
     bat
     bottom
     fzf
-    # magic-wormhole
-    # python310Packages.twine
-    # python310Packages.cookiecutter
-    # python310Packages.black
-    # python310Packages.flake8
     python310Packages.pipx
     sphinx
 
