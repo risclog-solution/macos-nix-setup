@@ -366,10 +366,21 @@ then
         ohai "Installing ruff."
         pipx install ruff
     fi
+
+    if ! [[ -x "$(command -v flake8)" ]]
+    then
+        ohai "Installing flake8."
+        pipx install flake8
+    fi
 fi
 
 ohai "Link gitconfig to HOME"
 ln -s ~/.config/git/config ~/.gitconfig
+
+# Link libs globally so python-magic can find them
+if [ ! -d "/usr/local/lib" ]; then
+  sudo ln -s ~/.nix-profile/lib /usr/local/
+fi
 
 ohai "Opening iTerm, your new terminal app. If fonts are not shown correctly, run 'p10k configure' once to install NerdFont."
 open -a iTerm .
