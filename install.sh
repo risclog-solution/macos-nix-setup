@@ -378,12 +378,14 @@ then
     fi
 fi
 
-ohai "Link gitconfig to HOME"
-ln -s ~/.config/git/config ~/.gitconfig
+if [ ! -f "~/.gitconfig" ]; then
+    ohai "Link gitconfig to HOME"
+    ln -s ~/.config/git/config ~/.gitconfig
+fi
 
-# Link libs globally so python-magic can find them
 if [ ! -d "/usr/local/lib" ]; then
-  sudo ln -s ~/.nix-profile/lib /usr/local/
+    ohai "Link libs globally to python-magic et al can find them"
+    sudo ln -s ~/.nix-profile/lib /usr/local/
 fi
 
 ohai "Opening iTerm, your new terminal app. If fonts are not shown correctly, run 'p10k configure' once to install NerdFont."
