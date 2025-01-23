@@ -35,7 +35,7 @@
     haskellPackages.cryptohash-sha256
     libxml2
     readline
-    postgresql_14
+    postgresql_14.dev
     file
     pre-commit
     ruby
