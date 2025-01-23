@@ -274,9 +274,9 @@ ohai "Updating nix flakes"
 cp darwin-configuration.nix /Users/$USER/.nixpkgs/
 if ! [[ -x "$(command -v darwin-rebuild)" ]]
 then
-    nix run nix-darwin -- switch --flake /opt/nixpkgs/
+    nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
 else
-    darwin-rebuild switch --flake /opt/nixpkgs/
+    darwin-rebuild switch --flake path:/opt/nixpkgs/
 fi
 
 if ! [[ -x "$(command -v home-manager)" ]]
@@ -291,7 +291,7 @@ fi
 
 ohai "Switching to new system configuration"
 have_sudo_access
-home-manager switch --flake .#rlmbp2025
+home-manager switch --flake path:/opt/nixpkgs/#rlmbp2025
 
 if ! [ -d "/etc/local/postgres/data" ]
 then
