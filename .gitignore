@@ -1,0 +1,5 @@
+syntax:glob
+
+flake.nix
+home-manager/modules/git.nix
+home-manager/modules/ssh.nix

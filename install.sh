@@ -204,11 +204,15 @@ else
     USEONEPASSWORDAGENT=""
 fi
 
+cp flake.nix.in flake.nix
+cp home-manager/modules/git.nix.in home-manager/modules/git.nix
+cp home-manager/modules/ssh.nix.in home-manager/modules/ssh.nix
+
 sed -i -- "s/HOSTNAME/$(scutil --get LocalHostName)/" flake.nix
 
 ohai "Change config to current user $USER"
 sed -i -- "s/USERNAME/$USER/" flake.nix
-sed -i -- "s/USERNAME/$USER/" darwin-configuration.nix
+
 
 if ! [[ -n $USERFULLNAME ]]
 then
