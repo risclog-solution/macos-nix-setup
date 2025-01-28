@@ -27,6 +27,7 @@
   # automate `defaults write com.google.chrome ApplePressAndHoldEnabled -bool false`
 
   programs.git.signing.signByDefault = true;
+  programs.gpg.enable = false;
 
   # nixpkgs.config.allowUnfree = true;
   nixpkgs.config.packageOverrides = pkgs:
