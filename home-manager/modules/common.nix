@@ -12,6 +12,7 @@
   home.packages = with pkgs; [
     gnused.out
     zopfli.dev
+    gitleaks
     tmate
     ack
     act
@@ -37,7 +38,6 @@
     readline
     postgresql_14.dev
     file
-    pre-commit
     ruby
     binutils
     jdk17.out

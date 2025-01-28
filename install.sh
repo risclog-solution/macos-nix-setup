@@ -376,6 +376,12 @@ then
         ohai "Installing flake8."
         pipx install flake8
     fi
+
+    if ! [[ -x "$(command -v pre-commit)" ]]
+    then
+        ohai "Installing pre-commit."
+        pipx install pre-commit
+    fi
 fi
 
 if [ ! -f "~/.gitconfig" ]; then
