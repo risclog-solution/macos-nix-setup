@@ -46,7 +46,6 @@
     geckodriver
     poppler_utils
     qpdf
-    #pdftk
     texlive.combined.scheme-full
     swig
     zoxide
@@ -89,7 +88,7 @@
     python39
     python310
     python311
-    python312
+    python312Full
     jq
     cloc
     docker
@@ -119,5 +118,6 @@
   home.file.".local/bin/t".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/t";
   home.file.".local/bin/tf".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/tf";
   home.file.".local/bin/update_nix".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/update_nix";
+  home.file.".local/bin/pdftk".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/pdftk";
   home.file.".git-templates/hooks/prepare-commit-msg".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/prepare-commit-msg";
 }
