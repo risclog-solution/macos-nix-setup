@@ -4,7 +4,7 @@
 # Allow `[[ -n "$(command)" ]]`, `func "$(command)"`, pipes, etc.
 # shellcheck disable=SC2312
 
-set -u
+set -e
 
 chomp() {
   printf "%s" "${1/"$'\n'"/}"
