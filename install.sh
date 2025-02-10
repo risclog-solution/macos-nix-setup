@@ -384,7 +384,7 @@ then
     fi
 fi
 
-if [ ! -f "~/.gitconfig" ]; then
+if [ ! -f "/Users/$USER/.gitconfig" ]; then
     ohai "Link gitconfig to HOME"
     ln -s ~/.config/git/config ~/.gitconfig
 fi
