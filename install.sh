@@ -387,7 +387,7 @@ fi
 if ! [[ -f "/Users/$USER/.gitconfig" ]]
 then
     ohai "Link gitconfig to HOME"
-    ln -s ~/.config/git/config ~/.gitconfig
+    ln -s ~/.config/git/config ~/.gitconfig || true
 fi
 
 if [ ! -d "/usr/local/lib" ]; then
