@@ -39,8 +39,9 @@
         bindkey '^[[A' history-substring-search-up
 
         export LDFLAGS="-L${config.home.homeDirectory}/.nix-profile/lib"
-        export CFLAGS="-I${config.home.homeDirectory}/.nix-profile/include"
         export LD_LIBRARY_PATH="${config.home.homeDirectory}/.nix-profile/lib"
+        export CPPFLAGS="-L${config.home.homeDirectory}/.nix-profile/include"
+        export CFLAGS="-I${config.home.homeDirectory}/.nix-profile/include"
       '';
     };
     zplug = {
