@@ -5,6 +5,7 @@
     userName = "USERFULLNAME";
     userEmail = "USEREMAIL";
     signing.key = "SIGNINGKEY";
+    signing.gpgPath = "/usr/local/bin/gpg";
 
     delta = {
       enable = false;
