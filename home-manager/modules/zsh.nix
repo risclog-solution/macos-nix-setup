@@ -16,6 +16,7 @@
         eval "$(zoxide init zsh)"
         export LANG=de_DE.UTF-8
         export PIP_REQUIRE_VIRTUALENV=1
+        export SQLALCHEMY_WARN_20=
         export PATH=${config.home.homeDirectory}/.local/bin:$PATH
         export POSTGRES_USER=kravagtest
         export POSTGRES_PASS=asdf
