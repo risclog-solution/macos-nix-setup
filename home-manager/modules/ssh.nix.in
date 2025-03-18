@@ -5,11 +5,11 @@
 
     matchBlocks = {
         "*" = {
-            forwardAgent = true;
-            serverAliveInterval = 15;
-            serverAliveCountMax = 3;
             extraOptions = {
               1PASSWORD_SSH_AGENT_CONFIG
+              ForwardAgent = "yes";
+              ServerAliveCountMax = "3";
+              ServerAliveInterval = "60";
               strictHostKeyChecking = "no";
               VisualHostKey = "yes";
               IgnoreUnknown = "UseKeyChain,AddKeysToAgent,IdentityFile";
@@ -17,6 +17,9 @@
               AddKeysToAgent = "yes";
               IdentityFile = "~/.ssh/id_ed25519";
               PubkeyAcceptedKeyTypes = "+ssh-rsa";
+              ControlMaster = "auto";
+              ControlPath = "/tmp/ssh_mux_%h_%p_%r";
+              ControlPersist = "2h";
             };
         };
         "flyingcircus-jump-host" = {
