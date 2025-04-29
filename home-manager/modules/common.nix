@@ -8,6 +8,7 @@
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
 
   ];
+  nixpkgs.config.allowUnsupportedSystem = true;
 
   home.packages = with pkgs; [
     gnused.out
@@ -45,6 +46,7 @@
     ghostscript
     geckodriver
     poppler_utils
+    wkhtmltopdf
     qpdf
     texlive.combined.scheme-full
     swig
@@ -120,4 +122,5 @@
   home.file.".local/bin/update_nix".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/update_nix";
   home.file.".local/bin/pdftk".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/pdftk";
   home.file.".git-templates/hooks/prepare-commit-msg".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/prepare-commit-msg";
+  home.file.".local/bin/wkhtmltopdf".source = config.lib.file.mkOutOfStoreSymlink "/nix/store/f6si5zpzfz9rba23j2pz8jg0pzj5zjxa-wkhtmltopdf-0.12.6-2/bin/wkhtmltopdf";
 }
