@@ -32,7 +32,7 @@
         "*.gocept.net" = {
             proxyJump = "flyingcircus-jump-host";
         };
-        "aktiv* claimx* gha* kravag* mci* risclog* rlredmine* rlservices* ruvti* timetracker* zertifkatsportal*" = {
+        "aktiv* claimx* gha* kravag* mci* risclog* rlredmine* rlservices* volkswagen* timetracker* zertifkatsportal*" = {
             proxyJump = "flyingcircus-jump-host";
         };
         "dev.risclog.net" = {
