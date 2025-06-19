@@ -33,6 +33,7 @@
     libffi.out
     libxcrypt
     libargon2
+    tesseract
     # mailsend  # currently not supported under M1
     haskellPackages.cryptohash-sha256
     libxml2
