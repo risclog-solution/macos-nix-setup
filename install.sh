@@ -272,6 +272,8 @@ fi
 
 ohai "Updating nix flakes"
 mkdir -p /Users/$USER/.nixpkgs/
+mkdir -p "/Users/$USER/.config/nix/"
+echo "experimental-features = nix-command flakes" > "/Users/$USER/.config/nix/nix.conf"
 cp darwin-configuration.nix /Users/$USER/.nixpkgs/
 if ! [[ -x "$(command -v darwin-rebuild)" ]]
 then
@@ -284,8 +286,6 @@ if ! [[ -x "$(command -v home-manager)" ]]
 then
     ohai "Installing home manager"
     # nix-env -iA nixpkgs.nixFlakes
-    mkdir -p "/Users/$USER/.config/nix/"
-    echo "experimental-features = nix-command flakes" > "/Users/$USER/.config/nix/nix.conf"
     # nix-env -e nix-2.9.1
     NIX_PATH="/Users/$USER/.nix-defexpr/channels:nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels" nix-shell '<home-manager>' -A install
 fi
