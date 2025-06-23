@@ -271,6 +271,7 @@ then
 fi
 
 ohai "Updating nix flakes"
+mkdir -p /Users/$USER/.nixpkgs/
 cp darwin-configuration.nix /Users/$USER/.nixpkgs/
 if ! [[ -x "$(command -v darwin-rebuild)" ]]
 then
