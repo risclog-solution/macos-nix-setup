@@ -277,7 +277,8 @@ echo "experimental-features = nix-command flakes" > "/Users/$USER/.config/nix/ni
 cp darwin-configuration.nix /Users/$USER/.nixpkgs/
 if ! [[ -x "$(command -v darwin-rebuild)" ]]
 then
-    nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
+    nix flake update --flake path:/opt/nixpkgs/
+    darwin-rebuild switch --flake path:/opt/nixpkgs/
 else
     sudo darwin-rebuild switch --flake path:/opt/nixpkgs/
 fi
