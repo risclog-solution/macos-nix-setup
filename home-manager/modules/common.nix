@@ -47,7 +47,6 @@
     ghostscript
     geckodriver
     poppler_utils
-    wkhtmltopdf
     qpdf
     texlive.combined.scheme-full
     swig
