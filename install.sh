@@ -279,7 +279,7 @@ if ! [[ -x "$(command -v darwin-rebuild)" ]]
 then
     nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
 else
-    darwin-rebuild switch --flake path:/opt/nixpkgs/
+    sudo darwin-rebuild switch --flake path:/opt/nixpkgs/
 fi
 
 if ! [[ -x "$(command -v home-manager)" ]]
