@@ -278,7 +278,9 @@ cp darwin-configuration.nix /Users/$USER/.nixpkgs/
 if ! [[ -x "$(command -v darwin-rebuild)" ]]
 then
     nix flake update --flake path:/opt/nixpkgs/
-    darwin-rebuild switch --flake path:/opt/nixpkgs/
+    nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
+    # If darwin-rebuild is not found in PATH, try to find it in /nix/store and
+    # run the command above by hand
 else
     sudo darwin-rebuild switch --flake path:/opt/nixpkgs/
 fi
