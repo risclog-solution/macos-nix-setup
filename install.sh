@@ -270,20 +270,20 @@ then
     exit 1
 fi
 
-ohai "Updating nix flakes"
-mkdir -p /Users/$USER/.nixpkgs/
-mkdir -p "/Users/$USER/.config/nix/"
-echo "experimental-features = nix-command flakes" > "/Users/$USER/.config/nix/nix.conf"
-cp darwin-configuration.nix /Users/$USER/.nixpkgs/
-if ! [[ -x "$(command -v darwin-rebuild)" ]]
-then
-    nix flake update --flake path:/opt/nixpkgs/
-    nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
-    # If darwin-rebuild is not found in PATH, try to find it in /nix/store and
-    # run the command above by hand
-else
-    sudo darwin-rebuild switch --flake path:/opt/nixpkgs/
-fi
+#ohai "Updating nix flakes"
+#mkdir -p /Users/$USER/.nixpkgs/
+#mkdir -p "/Users/$USER/.config/nix/"
+#echo "experimental-features = nix-command flakes" > "/Users/$USER/.config/nix/nix.conf"
+#cp darwin-configuration.nix /Users/$USER/.nixpkgs/
+#if ! [[ -x "$(command -v darwin-rebuild)" ]]
+#then
+#    nix flake update --flake path:/opt/nixpkgs/
+#    nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
+#    # If darwin-rebuild is not found in PATH, try to find it in /nix/store and
+#    # run the command above by hand
+#else
+#    sudo darwin-rebuild switch --flake path:/opt/nixpkgs/
+#fi
 
 if ! [[ -x "$(command -v home-manager)" ]]
 then
