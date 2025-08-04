@@ -75,7 +75,6 @@
 
     # Requires a patched font
     # https://github.com/ryanoasis/nerd-fonts/blob/master/readme.md#patched-fonts
-    lsd
     tree
     # better du alternative
     du-dust
@@ -87,7 +86,6 @@
 
     yarn
     neovim
-    python39
     python310
     python311
     python312Full

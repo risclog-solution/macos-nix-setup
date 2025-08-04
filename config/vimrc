@@ -148,8 +148,6 @@ let g:netrw_banner=0
 let g:netrw_browse_slit=4
 let g:netrw_altv=1
 let g:netrw_liststyle=3
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',\(^\|\s\s)zs\.\S\+'
 
 " Gutetags
 let g:gutentags_add_default_project_roots = 0
