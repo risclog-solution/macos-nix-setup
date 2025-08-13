@@ -10,6 +10,17 @@ Just run this install script from your terminal:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/risclog-solution/macos-nix-setup/HEAD/install.sh)"
 ```
 
+The installation consists of the following steps:
+
+- MacGPG installieren, Schlüssel erzeugen und hochladen
+- Script starten: iTerm2, Developer Tools installieren
+- Name/GPGKey/… eingeben, danach immer `y` auswählen
+- Determinate Nix installieren
+- Script wieder starten, bis Fehler `system activation must now be run as root` kommt
+- Script wieder starten, sollte nun fehlerfrei durchlaufen
+- Am Ende im iTerm noch `p10k configure` ausführen, damit die Schriftarten passen
+
+
 Restore from Time Machine backup
 --------------------------------
 
