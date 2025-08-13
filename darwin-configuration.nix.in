@@ -16,7 +16,7 @@
   # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin/configuration.nix";
 
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
+  # services.nix-daemon.enable = true;
 
   launchd.daemons.nginx = {
     command = "${pkgs.nginx}/bin/nginx -p /etc/local/nginx/tmp -c /etc/local/nginx/nginx.conf -e /etc/local/nginx/logs/error.log";
@@ -60,4 +60,6 @@
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
+  system.primaryUser = "USERNAME";
+  ids.gid.nixbld = 350;
 }

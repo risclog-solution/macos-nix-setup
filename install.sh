@@ -205,6 +205,7 @@ else
 fi
 
 cp flake.nix.in flake.nix
+cp darwin-configuration.nix.in darwin-configuration.nix
 cp home-manager/modules/git.nix.in home-manager/modules/git.nix
 cp home-manager/modules/ssh.nix.in home-manager/modules/ssh.nix
 
@@ -212,6 +213,7 @@ sed -i -- "s/HOSTNAME/$(scutil --get LocalHostName)/" flake.nix
 
 ohai "Change config to current user $USER"
 sed -i -- "s/USERNAME/$USER/" flake.nix
+sed -i -- "s/USERNAME/$USER/" darwin-configuration.nix
 
 
 if ! [[ -n $USERFULLNAME ]]
@@ -270,26 +272,27 @@ then
     exit 1
 fi
 
-#ohai "Updating nix flakes"
-#mkdir -p /Users/$USER/.nixpkgs/
-#mkdir -p "/Users/$USER/.config/nix/"
-#echo "experimental-features = nix-command flakes" > "/Users/$USER/.config/nix/nix.conf"
-#cp darwin-configuration.nix /Users/$USER/.nixpkgs/
-#if ! [[ -x "$(command -v darwin-rebuild)" ]]
-#then
-#    nix flake update --flake path:/opt/nixpkgs/
-#    nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
-#    # If darwin-rebuild is not found in PATH, try to find it in /nix/store and
-#    # run the command above by hand
-#else
-#    sudo darwin-rebuild switch --flake path:/opt/nixpkgs/
-#fi
+DRRUN=$(ls /nix/store | grep 'darwin-rebuild$' | head -n 1)
+
+if ! [ -z "$DRRUN" ]; then
+    ohai "Installing nix flakes"
+    mkdir -p /Users/$USER/.nixpkgs/
+    mkdir -p "/Users/$USER/.config/nix/"
+    echo "experimental-features = nix-command flakes" > "/Users/$USER/.config/nix/nix.conf"
+    cp darwin-configuration.nix /Users/$USER/.nixpkgs/
+    nix flake update --flake path:/opt/nixpkgs/
+    # nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
+fi
+
+ohai "Updating nix flakes"
+sudo "/nix/store/$DRRUN/bin/darwin-rebuild" switch --flake path:/opt/nixpkgs/
+
 
 if ! [[ -x "$(command -v home-manager)" ]]
 then
     ohai "Installing home manager"
-    # nix-channel --add https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz home-manager
-    # nix-channel --update
+    nix-channel --add https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz home-manager
+    nix-channel --update
     NIX_PATH="/Users/$USER/.nix-defexpr/channels:nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels" nix-shell '<home-manager>' -A install
 fi
 
