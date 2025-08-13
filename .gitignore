@@ -1,6 +1,6 @@
 syntax:glob
 
 flake.nix
-darwin-configure.nix
+darwin-configuration.nix
 home-manager/modules/git.nix
 home-manager/modules/ssh.nix

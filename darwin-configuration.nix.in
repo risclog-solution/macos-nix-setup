@@ -61,5 +61,5 @@
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
   system.primaryUser = "USERNAME";
-  ids.gid.nixbld = 350;
+  #ids.gid.nixbld = 350;
 }
