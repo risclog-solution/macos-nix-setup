@@ -304,7 +304,8 @@ if ! [ -d "/etc/local/postgres/data" ]
 then
     execute_sudo "${MKDIR[@]}" "/etc/local/postgres/data"
     execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/postgres"
-    initdb /etc/local/postgres/data
+    INITDBRUN=$(ls /nix/store | grep 'postgresql-14.18$' | head -n 1)
+    /nix/store/$INITDBRUN/bin/initdb /etc/local/postgres/data
 fi
 
 if ! [ -d "/etc/local/redis" ]
