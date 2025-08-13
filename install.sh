@@ -274,12 +274,13 @@ fi
 
 DRRUN=$(ls /nix/store | grep 'darwin-rebuild$' | head -n 1)
 
+mkdir -p /Users/$USER/.nixpkgs/
+mkdir -p "/Users/$USER/.config/nix/"
+echo "experimental-features = nix-command flakes" > "/Users/$USER/.config/nix/nix.conf"
+cp darwin-configuration.nix /Users/$USER/.nixpkgs/
+
 if [ -z "$DRRUN" ]; then
     ohai "Installing nix flakes"
-    mkdir -p /Users/$USER/.nixpkgs/
-    mkdir -p "/Users/$USER/.config/nix/"
-    echo "experimental-features = nix-command flakes" > "/Users/$USER/.config/nix/nix.conf"
-    cp darwin-configuration.nix /Users/$USER/.nixpkgs/
     nix flake update --flake path:/opt/nixpkgs/
     nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
 fi
