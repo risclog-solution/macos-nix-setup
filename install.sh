@@ -281,7 +281,7 @@ if [ -z "$DRRUN" ]; then
     echo "experimental-features = nix-command flakes" > "/Users/$USER/.config/nix/nix.conf"
     cp darwin-configuration.nix /Users/$USER/.nixpkgs/
     nix flake update --flake path:/opt/nixpkgs/
-    # nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
+    nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
 fi
 
 ohai "Updating nix flakes"
