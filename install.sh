@@ -176,7 +176,7 @@ fi
 if [ -d "$RL_CHECKOUT" ]
 then
     ohai "Checkout dir $RL_CHECKOUT already exists. Updating."
-    cd $RL_CHECKOUT && git checkout -- . && git pull
+    cd $RL_CHECKOUT && git stash && git pull && git stash pop
 else
   ohai "Checkout dir $RL_CHECKOUT does not exist. Creating."
   execute_sudo "${MKDIR[@]}" "${RL_CHECKOUT}"
@@ -263,12 +263,7 @@ echo "USEONEPASSWORDAGENT=\"$USEONEPASSWORDAGENT\"" >> $CONFIG
 
 if ! [[ -x "$(command -v nix-env)" ]]
 then
-    ohai "Installing nix. Answer always y."
-    NIX_FIRST_BUILD_UID=30001 sh <(curl -L https://releases.nixos.org/nix/nix-2.24.6/install)
-fi
-if ! [[ -x "$(command -v nix-env)" ]]
-then
-    ohai "Please restart terminal to finish Nix installation"
+    ohai "Please install Nix via https://docs.determinate.systems, the rerun script"
     exit 1
 fi
 
@@ -403,6 +398,8 @@ if [ ! -d "/usr/local/lib" ]; then
     ohai "Link libs globally to python-magic et al can find them"
     sudo ln -s ~/.nix-profile/lib /usr/local/
 fi
+
+sudo rm -rf /Users/$USER/.nix-profile/bin/gpg
 
 ohai "Opening iTerm, your new terminal app. If fonts are not shown correctly, run 'p10k configure' once to install NerdFont."
 open -a iTerm .

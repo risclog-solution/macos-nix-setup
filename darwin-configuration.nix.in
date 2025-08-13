@@ -17,6 +17,7 @@
 
   # Auto upgrade nix package and the daemon service.
   # services.nix-daemon.enable = true;
+  nix.enable = false;
 
   launchd.daemons.nginx = {
     command = "${pkgs.nginx}/bin/nginx -p /etc/local/nginx/tmp -c /etc/local/nginx/nginx.conf -e /etc/local/nginx/logs/error.log";
