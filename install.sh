@@ -274,7 +274,7 @@ fi
 
 DRRUN=$(ls /nix/store | grep 'darwin-rebuild$' | head -n 1)
 
-if ! [ -z "$DRRUN" ]; then
+if [ -z "$DRRUN" ]; then
     ohai "Installing nix flakes"
     mkdir -p /Users/$USER/.nixpkgs/
     mkdir -p "/Users/$USER/.config/nix/"
