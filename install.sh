@@ -176,7 +176,7 @@ fi
 if [ -d "$RL_CHECKOUT" ]
 then
     ohai "Checkout dir $RL_CHECKOUT already exists. Updating."
-    cd $RL_CHECKOUT && git stash && git pull && git stash pop
+    cd $RL_CHECKOUT git stash && git pull
 else
   ohai "Checkout dir $RL_CHECKOUT does not exist. Creating."
   execute_sudo "${MKDIR[@]}" "${RL_CHECKOUT}"
