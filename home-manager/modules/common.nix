@@ -34,11 +34,13 @@
     libxcrypt
     libargon2
     tesseract
+    ollama
     # mailsend  # currently not supported under M1
     haskellPackages.cryptohash-sha256
     libxml2
     readline
     postgresql_14.dev
+    postgresql_14.pg_config
     file
     ruby
     binutils
@@ -87,8 +89,8 @@
     yarn
     neovim
     python310
-    python311
     python312Full
+    python313
     jq
     cloc
     docker
