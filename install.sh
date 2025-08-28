@@ -287,6 +287,7 @@ sudo "/nix/store/$DRRUN/bin/darwin-rebuild" switch --flake path:/opt/nixpkgs/
 if ! [[ -x "$(command -v home-manager)" ]]
 then
     ohai "Installing home manager"
+    nix-channel --add https://channels.nixos.org/nixos-25.05 nixpkgs
     nix-channel --add https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz home-manager
     nix-channel --update
     NIX_PATH="/Users/$USER/.nix-defexpr/channels:nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels" nix-shell '<home-manager>' -A install
