@@ -80,7 +80,7 @@
     tree
     # better du alternative
     du-dust
-    awscli
+    awscli2
     graphviz
     git-crypt
 
