@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.10
 #
 # git hook that prefills the commit message with the diff to the changelog file
 #
