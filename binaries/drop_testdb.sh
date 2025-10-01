@@ -20,6 +20,6 @@ for entry in db_list.splitlines():
     db_name = db_name.decode()
     if not db_name.startswith(options.prefix):
         continue
-    print('dropdb {}'.format(db_name))
+    print('dropdb -f {}'.format(db_name))
     if not options.dry:
-        subprocess.check_output(['dropdb', db_name])
+        subprocess.check_output(['dropdb', '-f', db_name])
