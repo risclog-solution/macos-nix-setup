@@ -376,6 +376,12 @@ then
         pipx install ruff
     fi
 
+    if ! [[ -x "$(command -v virtualenv)" ]]
+    then
+        ohai "Installing virtualenv."
+        pipx install "virtualenv<20.0.0"
+    fi
+
     if ! [[ -x "$(command -v flake8)" ]]
     then
         ohai "Installing flake8."
