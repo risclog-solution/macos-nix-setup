@@ -406,6 +406,8 @@ if [ ! -d "/usr/local/lib" ]; then
     sudo ln -s ~/.nix-profile/lib /usr/local/
 fi
 
+psql postgres -c "CREATE USER kravagtest WITH SUPERUSER PASSWORD 'asdf';"  &>/dev/null
+
 sudo rm -rf /Users/$USER/.nix-profile/bin/gpg
 
 ohai "Opening iTerm, your new terminal app. If fonts are not shown correctly, run 'p10k configure' once to install NerdFont."
