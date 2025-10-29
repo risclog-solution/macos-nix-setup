@@ -301,7 +301,7 @@ if ! [ -d "/etc/local/postgres16/data" ]
 then
     execute_sudo "${MKDIR[@]}" "/etc/local/postgres16/data"
     execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/postgres16"
-    INITDBRUN=$(ls /nix/store | grep 'postgresql-16.6$' | head -n 1)
+    INITDBRUN=$(ls /nix/store | grep 'postgresql-16.9$' | head -n 1)
     /nix/store/$INITDBRUN/bin/initdb /etc/local/postgres/data
 fi
 
