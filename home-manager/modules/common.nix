@@ -42,8 +42,8 @@
     haskellPackages.cryptohash-sha256
     libxml2
     readline
-    postgresql_14.dev
-    postgresql_14.pg_config
+    postgresql_16.dev
+    postgresql_16.pg_config
     file
     ruby
     binutils

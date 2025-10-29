@@ -297,11 +297,11 @@ ohai "Switching to new system configuration"
 have_sudo_access
 home-manager switch --flake path:/opt/nixpkgs/#rlmbp2025
 
-if ! [ -d "/etc/local/postgres/data" ]
+if ! [ -d "/etc/local/postgres16/data" ]
 then
-    execute_sudo "${MKDIR[@]}" "/etc/local/postgres/data"
-    execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/postgres"
-    INITDBRUN=$(ls /nix/store | grep 'postgresql-14.18$' | head -n 1)
+    execute_sudo "${MKDIR[@]}" "/etc/local/postgres16/data"
+    execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/postgres16"
+    INITDBRUN=$(ls /nix/store | grep 'postgresql-16.6$' | head -n 1)
     /nix/store/$INITDBRUN/bin/initdb /etc/local/postgres/data
 fi
 

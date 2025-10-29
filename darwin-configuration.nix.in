@@ -7,7 +7,7 @@
     [
         pkgs.vim
         pkgs.nginx
-        pkgs.postgresql_14
+        pkgs.postgresql_16
         pkgs.redis
     ];
 
@@ -29,9 +29,9 @@
     };
   };
 
-  launchd.user.agents.postgresql_14 = {
-    command = "${pkgs.postgresql_14}/bin/postgres -D /etc/local/postgres/data";
-    path = [pkgs.postgresql_14];
+  launchd.user.agents.postgresql_16 = {
+    command = "${pkgs.postgresql_16}/bin/postgres -D /etc/local/postgres16/data";
+    path = [pkgs.postgresql_16];
     serviceConfig = {
       KeepAlive = true;
       RunAtLoad = true;
