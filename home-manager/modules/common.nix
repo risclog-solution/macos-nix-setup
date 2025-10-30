@@ -64,6 +64,7 @@
     # mercurial
     zsh
     ctags
+    ios-deploy
     oh-my-zsh
     zsh-powerlevel10k
     zsh-syntax-highlighting
