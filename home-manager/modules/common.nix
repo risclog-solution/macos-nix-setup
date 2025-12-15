@@ -1,5 +1,22 @@
 { config, pkgs, libs, lib, nixpkgs, ... }:
-{
+let
+  noXKBgeomOverlay = self: super: {
+    xorgproto = super.xorgproto.overrideAttrs (old: {
+      postInstall = (old.postInstall or "") + ''
+        rm -f $out/include/X11/extensions/XKBgeom.h
+      '';
+    });
+    xorg = super.xorg // {
+      xorgproto = super.xorg.xorgproto.overrideAttrs (old: {
+        postInstall = (old.postInstall or "") + ''
+          rm -f $out/include/X11/extensions/XKBgeom.h
+        '';
+      });
+    };
+  };
+in {
+
+  nixpkgs.overlays = [ noXKBgeomOverlay ];
 
   # https://github.com/nix-community/nix-direnv#via-home-manager
   programs.direnv.enable = true;
@@ -38,6 +55,10 @@
     libargon2
     cairo
     cairo.dev
+    xorg.libxcb.dev
+    xorg.libX11.out
+    xorg.libX11.dev
+    xorg.xorgproto
     pkg-config
     cmake
     tesseract
