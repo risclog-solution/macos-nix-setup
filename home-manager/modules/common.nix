@@ -36,6 +36,10 @@
     libffi.out
     libxcrypt
     libargon2
+    cairo
+    cairo.dev
+    pkg-config
+    cmake
     tesseract
     ollama
     # mailsend  # currently not supported under M1

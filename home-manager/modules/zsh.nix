@@ -43,6 +43,7 @@
         export LD_LIBRARY_PATH="${config.home.homeDirectory}/.nix-profile/lib"
         export CPPFLAGS="-L${config.home.homeDirectory}/.nix-profile/include"
         export CFLAGS="-I${config.home.homeDirectory}/.nix-profile/include"
+        export PKG_CONFIG_PATH="${config.home.homeDirectory}/.nix-profile/lib/pkgconfig/"
       '';
     };
     zplug = {
