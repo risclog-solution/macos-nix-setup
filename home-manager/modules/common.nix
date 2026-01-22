@@ -48,6 +48,7 @@ in {
     libjpeg.out
     openssl.dev
     openssl.out
+    maven
     libxslt
     libffi.dev
     libffi.out
