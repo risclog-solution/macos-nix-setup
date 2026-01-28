@@ -21,6 +21,8 @@
         export POSTGRES_USER=kravagtest
         export POSTGRES_PASS=asdf
 
+        export OTEL_SDK_DISABLED=true
+
         if [[ -n $SSH_CONNECTION ]]; then
           export EDITOR='vim'
         else
