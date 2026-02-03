@@ -118,9 +118,9 @@ in {
 
     yarn
     neovim
-    python27
     python310
     python312Full
+    python313
     jq
     cloc
     docker
