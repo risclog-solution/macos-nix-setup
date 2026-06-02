@@ -282,7 +282,7 @@ cp darwin-configuration.nix /Users/$USER/.nixpkgs/
 ohai "Updating nix flakes"
 # sudo "/nix/store/$DRRUN/bin/darwin-rebuild" switch --flake path:/opt/nixpkgs/
 nix flake update --flake path:/opt/nixpkgs/
-nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
+sudo nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
 
 
 if ! [[ -x "$(command -v home-manager)" ]]
