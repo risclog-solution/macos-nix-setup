@@ -121,7 +121,6 @@ in {
     yarn
     neovim
     # python310
-    python311
     python312
     python313
     jq
