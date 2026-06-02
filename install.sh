@@ -267,21 +267,22 @@ then
     exit 1
 fi
 
-DRRUN=$(ls /nix/store | grep 'darwin-rebuild$' | head -n 1)
-
 mkdir -p /Users/$USER/.nixpkgs/
 mkdir -p "/Users/$USER/.config/nix/"
 echo "experimental-features = nix-command flakes" > "/Users/$USER/.config/nix/nix.conf"
 cp darwin-configuration.nix /Users/$USER/.nixpkgs/
 
-if [ -z "$DRRUN" ]; then
-    ohai "Installing nix flakes"
-    nix flake update --flake path:/opt/nixpkgs/
-    nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
-fi
-
+# DRRUN=$(ls /nix/store | grep 'darwin-rebuild$' | head -n 1)
+# if [ -z "$DRRUN" ]; then
+#     ohai "Installing nix flakes"
+#     nix flake update --flake path:/opt/nixpkgs/
+#     nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
+# fi
+#
 ohai "Updating nix flakes"
-sudo "/nix/store/$DRRUN/bin/darwin-rebuild" switch --flake path:/opt/nixpkgs/
+# sudo "/nix/store/$DRRUN/bin/darwin-rebuild" switch --flake path:/opt/nixpkgs/
+nix flake update --flake path:/opt/nixpkgs/
+nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
 
 
 if ! [[ -x "$(command -v home-manager)" ]]

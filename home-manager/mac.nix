@@ -16,7 +16,7 @@
   home.packages = with pkgs; [
     pinentry_mac
 
-    nodejs_22
+    nodejs_24
 
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/fonts/nerdfonts/default.nix
     # nerdfonts
