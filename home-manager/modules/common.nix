@@ -31,6 +31,7 @@ in {
   ];
 
   home.packages = with pkgs; [
+    mitmproxy
     gnused.out
     zopfli.dev
     gitleaks
@@ -56,10 +57,10 @@ in {
     libargon2
     cairo
     cairo.dev
-    xorg.libxcb.dev
-    xorg.libX11.out
-    xorg.libX11.dev
-    xorg.xorgproto
+    libxcb.dev
+    libX11.out
+    libX11.dev
+    xorgproto
     pkg-config
     cmake
     tesseract
@@ -77,7 +78,7 @@ in {
     coreutils
     ghostscript
     geckodriver
-    poppler_utils
+    poppler-utils
     qpdf
     texlive.combined.scheme-full
     swig
@@ -86,30 +87,32 @@ in {
     liberation_ttf
     rustc
     inetutils.out
-    nodePackages.grunt-cli
+    # nodePackages.grunt-cli
     # mercurial
     zsh
     ctags
-    ios-deploy
+    # ios-deploy
     oh-my-zsh
     zsh-powerlevel10k
     zsh-syntax-highlighting
     zsh-history-substring-search
-    thefuck
+    # thefuck
     gnupg
     tmux
     wget
     bat
     bottom
     fzf
-    python310Packages.pipx
+    (pkgs.pipx.overridePythonAttrs (old: {
+      doCheck = false;
+    }))
     sphinx
 
     # Requires a patched font
     # https://github.com/ryanoasis/nerd-fonts/blob/master/readme.md#patched-fonts
     tree
     # better du alternative
-    du-dust
+    dust
     awscli2
     graphviz
     git-crypt
@@ -118,8 +121,8 @@ in {
 
     yarn
     neovim
-    python310
-    python312Full
+    # python310
+    python312
     python313
     jq
     cloc
@@ -128,7 +131,7 @@ in {
     # Nix VSC
     nixpkgs-fmt
     # github cli
-    gitAndTools.gh
+    gh
     # needed for headless chrome
     # chromium
   ];

@@ -2,42 +2,41 @@
 {
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
 
-    matchBlocks = {
-        "*" = {
-            extraOptions = {
-              1PASSWORD_SSH_AGENT_CONFIG
-              ForwardAgent = "yes";
-              ServerAliveCountMax = "3";
-              ServerAliveInterval = "60";
-              strictHostKeyChecking = "no";
-              VisualHostKey = "yes";
-              IgnoreUnknown = "UseKeyChain,AddKeysToAgent,IdentityFile";
-              UseKeychain = "yes";
-              AddKeysToAgent = "yes";
-              IdentityFile = "~/.ssh/id_ed25519";
-              PubkeyAcceptedKeyTypes = "+ssh-rsa";
-              ControlMaster = "auto";
-              ControlPath = "/tmp/ssh_mux_%h_%p_%r";
-              ControlPersist = "2h";
-            };
-        };
-        "flyingcircus-jump-host" = {
-            hostname = "dev.risclog.net";
-            user = "${config.home.username}";
-        };
-        "*.fcio.net" = {
-            proxyJump = "flyingcircus-jump-host";
-        };
-        "*.gocept.net" = {
-            proxyJump = "flyingcircus-jump-host";
-        };
-        "aktiv* claimx* gha* kravag* mci* risclog* rlredmine* rlservices* volkswagen* timetracker* zertifkatsportal* vwfs*" = {
-            proxyJump = "flyingcircus-jump-host";
-        };
-        "dev.risclog.net" = {
-            proxyJump = "none";
-        };
+    settings = {
+      "*" = {
+        1PASSWORD_SSH_AGENT_CONFIG
+        forwardAgent = "yes";
+        serverAliveCountMax = "3";
+        serverAliveInterval = "60";
+        strictHostKeyChecking = "no";
+        visualHostKey = "yes";
+        ignoreUnknown = "UseKeyChain,AddKeysToAgent,IdentityFile";
+        useKeychain = "yes";
+        addKeysToAgent = "yes";
+        identityFile = "~/.ssh/id_ed25519";
+        pubkeyAcceptedKeyTypes = "+ssh-rsa";
+        controlMaster = "auto";
+        controlPath = "/tmp/ssh_mux_%h_%p_%r";
+        controlPersist = "2h";
+      };
+      "flyingcircus-jump-host" = {
+          hostname = "dev.risclog.net";
+          user = "${config.home.username}";
+      };
+      "*.fcio.net" = {
+          proxyJump = "flyingcircus-jump-host";
+      };
+      "*.gocept.net" = {
+          proxyJump = "flyingcircus-jump-host";
+      };
+      "aktiv* claimx* gha* kravag* mci* risclog* rlredmine* rlservices* volkswagen* timetracker* zertifkatsportal* vwfs*" = {
+          proxyJump = "flyingcircus-jump-host";
+      };
+      "dev.risclog.net" = {
+          proxyJump = "none";
+      };
     };
   };
 }
