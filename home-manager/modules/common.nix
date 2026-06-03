@@ -31,6 +31,7 @@ in {
   ];
 
   home.packages = with pkgs; [
+    mitmproxy
     gnused.out
     zopfli.dev
     gitleaks
