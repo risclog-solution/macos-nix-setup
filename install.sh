@@ -23,6 +23,7 @@ export USER
 CONFIG="/Users/$USER/.config/rlnixpkgs"
 GROUP="admin"
 TOUCH=("/usr/bin/touch")
+PATH="/nix/var/nix/profiles/default/bin/:$PATH"
 
 unset HAVE_SUDO_ACCESS # unset this from the environment
 
@@ -272,31 +273,14 @@ mkdir -p "/Users/$USER/.config/nix/"
 echo "experimental-features = nix-command flakes" > "/Users/$USER/.config/nix/nix.conf"
 cp darwin-configuration.nix /Users/$USER/.nixpkgs/
 
-# DRRUN=$(ls /nix/store | grep 'darwin-rebuild$' | head -n 1)
-# if [ -z "$DRRUN" ]; then
-#     ohai "Installing nix flakes"
-#     nix flake update --flake path:/opt/nixpkgs/
-#     nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
-# fi
-#
 ohai "Updating nix flakes"
-# sudo "/nix/store/$DRRUN/bin/darwin-rebuild" switch --flake path:/opt/nixpkgs/
-/nix/var/nix/profiles/default/bin/nix flake update --flake path:/opt/nixpkgs/
-sudo /nix/var/nix/profiles/default/bin/nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
-
-
-if ! [[ -x "$(command -v home-manager)" ]]
-then
-    ohai "Installing home manager"
-    nix-channel --add https://channels.nixos.org/nixos-25.05 nixpkgs
-    nix-channel --add https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz home-manager
-    nix-channel --update
-    NIX_PATH="/Users/$USER/.nix-defexpr/channels:nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels" nix-shell '<home-manager>' -A install
-fi
+nix flake update --flake path:/opt/nixpkgs/
+sudo nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
 
 ohai "Switching to new system configuration"
 have_sudo_access
-home-manager switch --flake path:/opt/nixpkgs/#rlmbp2025
+nix run github:nix-community/home-manager -- switch --flake path:/opt/nixpkgs/#rlmbp2025
+# home-manager switch --flake path:/opt/nixpkgs/#rlmbp2025
 
 if ! [ -d "/etc/local/postgres16/data" ]
 then
