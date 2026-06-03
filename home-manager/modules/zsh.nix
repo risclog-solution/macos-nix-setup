@@ -10,7 +10,7 @@
     };
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "mercurial" "macos" "thefuck" ];
+      plugins = [ "git" "mercurial" "macos" ];
       theme = "robbyrussell";
       extraConfig = ''
         eval "$(zoxide init zsh)"
