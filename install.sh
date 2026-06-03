@@ -18,8 +18,7 @@ STAT_PRINTF=("stat" "-f")
 PERMISSION_FORMAT="%A"
 CHOWN=("/usr/sbin/chown")
 CHGRP=("/usr/bin/chgrp")
-#USER="$(chomp "$(id -un)")"
-USER="$USERNAME"
+USER="$(chomp "$(id -un)")"
 export USER
 CONFIG="/Users/$USER/.config/rlnixpkgs"
 GROUP="admin"
