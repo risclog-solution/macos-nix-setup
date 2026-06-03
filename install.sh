@@ -270,7 +270,7 @@ echo "USEONEPASSWORDAGENT=\"$USEONEPASSWORDAGENT\"" >> $CONFIG
 
 if ! [[ -x "$(command -v /nix/var/nix/profiles/default/bin/nix-env)" ]]
 then
-    ohai "Please install Nix via https://docs.determinate.systems, the rerun script"
+    ohai "Please install Nix via https://docs.determinate.systems, then rerun script"
     exit 1
 fi
 
