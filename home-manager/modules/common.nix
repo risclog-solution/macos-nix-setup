@@ -37,6 +37,7 @@ in {
     gitleaks
     tmate
     ack
+    age
     act
     xz
     mkcert

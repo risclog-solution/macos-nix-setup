@@ -20,6 +20,7 @@
         export PATH=${config.home.homeDirectory}/.local/bin:${config.home.homeDirectory}/.nix-profile/bin:$PATH
         export POSTGRES_USER=kravagtest
         export POSTGRES_PASS=asdf
+        export BATOU_AGE_IDENTITY_PASSPHRASE="op://Employee/Risclog/Passphrase""
 
         export OTEL_SDK_DISABLED=true
 
