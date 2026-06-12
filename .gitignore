@@ -1,6 +1,7 @@
 syntax:glob
 
 flake.nix
+flake.lock
 darwin-configuration.nix
 home-manager/modules/git.nix
 home-manager/modules/ssh.nix
