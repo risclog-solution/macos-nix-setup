@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.10
+#!/usr/bin/env python3.12
 
 import subprocess
 import re
@@ -16,7 +16,7 @@ db_list = subprocess.check_output("psql -l", shell=True)
 for entry in db_list.splitlines():
     if not entry:
         continue
-    db_name = re.sub(b'\s+', b' ', entry).strip().split()[0]
+    db_name = re.sub(b'\\s+', b' ', entry).strip().split()[0]
     db_name = db_name.decode()
     if not db_name.startswith(options.prefix):
         continue

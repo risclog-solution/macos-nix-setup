@@ -262,11 +262,14 @@ echo "USEREMAIL=\"$USEREMAIL\"" >> $CONFIG
 echo "GPGPUBKEY=\"$GPGPUBKEY\"" >> $CONFIG
 echo "USEONEPASSWORDAGENT=\"$USEONEPASSWORDAGENT\"" >> $CONFIG
 
-# Remove old nix-channels, we use flakes everywhere now
-/nix/var/nix/profiles/default/bin/nix-channel --remove home-manager
-/nix/var/nix/profiles/default/bin/nix-channel --remove nixpkgs
-/nix/var/nix/profiles/default/bin/nix-channel --remove darwin
-/nix/var/nix/profiles/default/bin/nix-channel --update
+if ! [[ -x "$(command -v /nix/var/nix/profiles/default/bin/nix-channel)" ]]
+then
+    # Remove old nix-channels, we use flakes everywhere now
+    /nix/var/nix/profiles/default/bin/nix-channel --remove home-manager
+    /nix/var/nix/profiles/default/bin/nix-channel --remove nixpkgs
+    /nix/var/nix/profiles/default/bin/nix-channel --remove darwin
+    /nix/var/nix/profiles/default/bin/nix-channel --update
+fi
 
 if ! [[ -x "$(command -v /nix/var/nix/profiles/default/bin/nix-env)" ]]
 then
