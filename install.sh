@@ -262,7 +262,7 @@ echo "USEREMAIL=\"$USEREMAIL\"" >> $CONFIG
 echo "GPGPUBKEY=\"$GPGPUBKEY\"" >> $CONFIG
 echo "USEONEPASSWORDAGENT=\"$USEONEPASSWORDAGENT\"" >> $CONFIG
 
-if ! [[ -x "$(command -v /nix/var/nix/profiles/default/bin/nix-channel)" ]]
+if [[ -x "$(command -v /nix/var/nix/profiles/default/bin/nix-channel)" ]]
 then
     # Remove old nix-channels, we use flakes everywhere now
     /nix/var/nix/profiles/default/bin/nix-channel --remove home-manager
