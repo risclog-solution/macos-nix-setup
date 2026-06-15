@@ -27,7 +27,7 @@ in {
   ];
   nixpkgs.config.allowUnsupportedSystem = true;
   nixpkgs.config.permittedInsecurePackages = [
-    "python-2.7.18.8"
+    "python-2.7.18.12"
   ];
 
   home.packages = with pkgs; [
@@ -122,9 +122,8 @@ in {
 
     yarn
     neovim
-    # python310
     python312
-    python313
+    python27
     jq
     cloc
     docker
