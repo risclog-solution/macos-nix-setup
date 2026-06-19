@@ -68,7 +68,7 @@ in {
     ollama
     # mailsend  # currently not supported under M1
     haskellPackages.cryptohash-sha256
-    libxml2
+    libxml2.dev
     readline
     postgresql_16.dev
     postgresql_16.pg_config
