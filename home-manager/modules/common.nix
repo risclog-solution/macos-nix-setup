@@ -88,7 +88,7 @@ in {
     liberation_ttf
     rustc
     inetutils.out
-    # nodePackages.grunt-cli
+    grunt-cli
     # mercurial
     zsh
     ctags
