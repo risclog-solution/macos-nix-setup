@@ -148,6 +148,7 @@ in {
 
   home.file.".local/bin/b".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/b";
   home.file.".local/bin/drop_testdb".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/drop_testdb.sh";
+  home.file.".local/bin/uv_export".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/uv_export.sh";
   home.file.".local/bin/clean_repo".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/clean_repo.sh";
   home.file.".local/bin/restart_nginx".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/restart_nginx.sh";
   home.file.".local/bin/mvim".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/mvim";
