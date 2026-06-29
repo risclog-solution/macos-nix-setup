@@ -15,11 +15,8 @@
         ignoreUnknown = "UseKeyChain,AddKeysToAgent,IdentityFile";
         useKeychain = "yes";
         addKeysToAgent = "yes";
-        identityFile = "~/.ssh/id_ed25519";
         pubkeyAcceptedKeyTypes = "+ssh-rsa";
         controlMaster = "auto";
-        controlPath = "/tmp/ssh_mux_%h_%p_%r";
-        controlPersist = "2h";
       };
       "flyingcircus-jump-host" = {
           hostname = "dev.risclog.net";
