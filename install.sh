@@ -205,10 +205,18 @@ else
     USEONEPASSWORDAGENT=""
 fi
 
+if ! [[ -n "$BATOUAGEIDENTITYPASSPHRASE" ]]
+then
+    BATOUAGEIDENTITYPASSPHRASE="op://Employee/Risclog/Passphrase"
+    export BATOUAGEIDENTITYPASSPHRASE
+fi
+
+
 cp flake.nix.in flake.nix
 cp darwin-configuration.nix.in darwin-configuration.nix
 cp home-manager/modules/git.nix.in home-manager/modules/git.nix
 cp home-manager/modules/ssh.nix.in home-manager/modules/ssh.nix
+cp home-manager/modules/zsh.nix.in home-manager/modules/zsh.nix
 
 sed -i -- "s/HOSTNAME/$(scutil --get LocalHostName)/" flake.nix
 
@@ -253,14 +261,19 @@ then
     ONEPASSWORD_AGENT='identityAgent = "\"${config.home.homeDirectory}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\"";'
     ONEPASSWORD_AGENT=$(printf '%s\n' "$ONEPASSWORD_AGENT" | sed -e 's/[\/&]/\\&/g')
     sed -i -- "s/1PASSWORD_SSH_AGENT_CONFIG/$ONEPASSWORD_AGENT/" home-manager/modules/ssh.nix
+    BATOU_AGE_CONFIG="export BATOU_AGE_IDENTITY_PASSPHRASE="\"${BATOUAGEIDENTITYPASSPHRASE}\"""
+    BATOU_AGE_CONFIG=$(printf '%s\n' "$BATOU_AGE_CONFIG" | sed -e 's/[\/&]/\\&/g')
+    sed -i -- "s/BATOU_AGE_IDENTITY_PASSPHRASE_CONFIG/$BATOU_AGE_CONFIG/" home-manager/modules/zsh.nix
 else
     sed -i -- "s/1PASSWORD_SSH_AGENT_CONFIG//" home-manager/modules/ssh.nix
+    sed -i -- "s/BATOU_AGE_IDENTITY_PASSPHRASE_CONFIG//" home-manager/modules/zsh.nix
 fi
 
 echo "USERFULLNAME=\"$USERFULLNAME\"" > $CONFIG
 echo "USEREMAIL=\"$USEREMAIL\"" >> $CONFIG
 echo "GPGPUBKEY=\"$GPGPUBKEY\"" >> $CONFIG
 echo "USEONEPASSWORDAGENT=\"$USEONEPASSWORDAGENT\"" >> $CONFIG
+echo "BATOUAGEIDENTITYPASSPHRASE=\"$BATOUAGEIDENTITYPASSPHRASE\"" >> $CONFIG
 
 if [[ -x "$(command -v /nix/var/nix/profiles/default/bin/nix-channel)" ]]
 then
