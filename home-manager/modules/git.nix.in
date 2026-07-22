@@ -2,8 +2,12 @@
 {
   programs.git = {
     enable = true;
-    signing.key = "SIGNINGKEY";
-    signing.signer = "/usr/local/bin/gpg";
+    signing = {
+    format = "ssh";
+    key = "~/.ssh/id_ed25519.pub";
+    signer = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+    signByDefault = true;
+    };
 
     settings = {
         user.name = "USERFULLNAME";
