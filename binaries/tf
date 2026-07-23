@@ -14,6 +14,5 @@ elif [ -x ./bin/test ]; then
 elif [ -f ./docker-compose.yml ]; then
     docker-compose exec wsgi pytest $@
 else
-    read -ep "No test executable found. Specify path " PATH
-    ./$PATH
+    uv run pytest $@
 fi
