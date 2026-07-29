@@ -47,6 +47,13 @@
         export CPPFLAGS="-L${config.home.homeDirectory}/.nix-profile/include"
         export CFLAGS="-I${config.home.homeDirectory}/.nix-profile/include"
         export PKG_CONFIG_PATH="${config.home.homeDirectory}/.nix-profile/lib/pkgconfig/"
+        autoload -Uz add-zsh-hook
+
+        fix_terminal_enter() {
+            [[ -t 0 ]] && stty icrnl
+        }
+
+        add-zsh-hook precmd fix_terminal_enter
       '';
     };
     zplug = {
