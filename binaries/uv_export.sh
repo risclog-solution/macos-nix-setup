@@ -1,4 +1,4 @@
 #!/bin/bash
 
 set -e
-uv export --format requirements.txt --no-dev --no-hashes --no-header --no-annotate
+uv export --all-extras --format requirements.txt --no-dev --no-hashes --no-header --no-annotate
