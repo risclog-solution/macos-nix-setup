@@ -32,14 +32,16 @@
   # nixpkgs.config.allowUnfree = true;
   nixpkgs.config.packageOverrides = pkgs:
     {
-      python312 = pkgs.python312.overrideAttrs (attrs:
-        pkgs.lib.attrsets.recursiveUpdate attrs { meta.priority = 30; });
-      python310 = pkgs.python310.overrideAttrs (attrs:
-        pkgs.lib.attrsets.recursiveUpdate attrs { meta.priority = 50; });
-      python39 = pkgs.python39.overrideAttrs (attrs:
+      python314 = pkgs.python314.overrideAttrs (attrs:
+        pkgs.lib.attrsets.recursiveUpdate attrs { meta.priority = 60; });
+      python313 = pkgs.python313.overrideAttrs (attrs:
         pkgs.lib.attrsets.recursiveUpdate attrs { meta.priority = 70; });
-      python38 = pkgs.python38.overrideAttrs (attrs:
+      python312 = pkgs.python312.overrideAttrs (attrs:
         pkgs.lib.attrsets.recursiveUpdate attrs { meta.priority = 100; });
+      python311 = pkgs.python311.overrideAttrs (attrs:
+        pkgs.lib.attrsets.recursiveUpdate attrs { meta.priority = 50; });
+      python27 = pkgs.python27.overrideAttrs (attrs:
+        pkgs.lib.attrsets.recursiveUpdate attrs { meta.priority = 10; });
     };
 
 }
