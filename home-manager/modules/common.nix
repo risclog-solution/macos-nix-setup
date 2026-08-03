@@ -40,7 +40,6 @@ in {
     age
     act
     xz
-    uv
     mkcert
     gettext
     lazygit

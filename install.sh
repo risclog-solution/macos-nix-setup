@@ -409,6 +409,12 @@ then
         ohai "Installing pre-commit."
         pipx install pre-commit
     fi
+
+    if ! [[ -x "$(command -v uv)" ]]
+    then
+        ohai "Installing uv."
+        pipx install uv
+    fi
 fi
 
 if ! [[ -L "/Users/$USER/.gitconfig" ]]
