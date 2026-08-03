@@ -24,14 +24,15 @@
         ];
       };
     in {
-        darwinConfigurations."HOSTNAME" = nix-darwin.lib.darwinSystem {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+      darwinConfigurations."HOSTNAME" = nix-darwin.lib.darwinSystem {
+        inherit pkgs;
         modules = [ ./darwin-configuration.nix ];
-        };
-        homeConfigurations = {
+      };
+
+      homeConfigurations = {
         rlmbp2025 = home-manager.lib.homeManagerConfiguration {
-            pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-            modules = [
+          inherit pkgs;
+          modules = [
             ./home-manager/modules/home-manager.nix
             ./home-manager/modules/common.nix
             ./home-manager/modules/git.nix
@@ -39,16 +40,14 @@
             ./home-manager/modules/zsh.nix
             ./home-manager/mac.nix
             {
-                home = {
+              home = {
                 username = "USERNAME";
                 homeDirectory = "/Users/USERNAME";
                 stateVersion = "26.05";
-                };
+              };
             }
-            ];
+          ];
         };
       };
     };
-  };
 }
-
