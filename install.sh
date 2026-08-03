@@ -318,7 +318,8 @@ then
     INITDBRUN=$(ls /nix/store | grep 'postgresql-16.14$' | head -n 1)
     /nix/store/$INITDBRUN/bin/initdb /etc/local/postgres16/data
 fi
-sed -i 's/^#max_locks_per_transaction = 64[[:space:]]*# min 10$/max_locks_per_transaction = 512/' /etc/local/postgres16/data/postgresql.conf
+sed -i 's/^#max_locks_per_transaction =.*$/max_locks_per_transaction = 512/' /etc/local/postgres16/data/postgresql.conf
+sed -i 's/^max_connections =.*$/max_connections = 400/' /etc/local/postgres16/data/postgresql.conf
 
 if ! [ -d "/etc/local/redis" ]
 then
