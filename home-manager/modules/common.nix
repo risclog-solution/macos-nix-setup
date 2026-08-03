@@ -16,7 +16,19 @@ let
   };
 in {
 
-  nixpkgs.overlays = [ noXKBgeomOverlay ];
+  nixpkgs.overlays = [
+    noXKBgeomOverlay
+
+    (final: prev: {
+      edencommon = prev.edencommon.overrideAttrs (_: {
+        doCheck = false;
+      });
+
+      uvloop = prev.uvloop.overrideAttrs (_: {
+        doCheck = false;
+      });
+    })
+];
 
   # https://github.com/nix-community/nix-direnv#via-home-manager
   programs.direnv.enable = true;
