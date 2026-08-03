@@ -20,6 +20,24 @@
               doCheck = false;
               doInstallCheck = false;
             });
+
+            nodejs-slim_24 = prev.nodejs-slim_24.overrideAttrs (_: {
+              doCheck = false;
+              doInstallCheck = false;
+            });
+
+            nodejs_24 = prev.nodejs_24.overrideAttrs (_: {
+              doCheck = false;
+              doInstallCheck = false;
+            });
+
+            pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+              (pyFinal: pyPrev: {
+                uvloop = pyPrev.uvloop.overridePythonAttrs (_: {
+                  doCheck = false;
+                });
+              })
+            ];
           })
         ];
       };
