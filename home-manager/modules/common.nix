@@ -27,6 +27,11 @@ in {
       uvloop = prev.uvloop.overrideAttrs (_: {
         doCheck = false;
       });
+
+      twisted = pyPrev.twisted.overridePythonAttrs (_: {
+        doCheck = false;
+        doInstallCheck = false;
+      });
     })
 ];
 
