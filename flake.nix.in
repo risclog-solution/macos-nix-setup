@@ -31,16 +31,16 @@
               doInstallCheck = false;
             });
 
-            twisted = pyPrev.twisted.overridePythonAttrs (_: {
-                doCheck = false;
-                doInstallCheck = false;
-            });
-
             pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
               (pyFinal: pyPrev: {
                 uvloop = pyPrev.uvloop.overridePythonAttrs (_: {
                   doCheck = false;
                 });
+                twisted = pyPrev.twisted.overridePythonAttrs (_: {
+                  doCheck = false;
+                  doInstallCheck = false;
+                });
+
               })
             ];
           })
