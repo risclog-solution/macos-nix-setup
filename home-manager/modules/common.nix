@@ -28,10 +28,6 @@ in {
         doCheck = false;
       });
 
-      twisted = pyPrev.twisted.overridePythonAttrs (_: {
-        doCheck = false;
-        doInstallCheck = false;
-      });
     })
 ];
 
