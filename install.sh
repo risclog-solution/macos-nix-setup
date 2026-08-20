@@ -10,8 +10,8 @@ chomp() {
   printf "%s" "${1/"$'\n'"/}"
 }
 
-RL_CHECKOUT=/opt/nixpkgs
-RL_REPO=https://github.com/risclog-solution/macos-nix-setup.git
+SETUP_CHECKOUT="/Users/$USER/.local/share/macos-nix-setup"
+SETUP_REPO="git@github.com:marcus-steinbach/macos-nix-setup.git"
 CHMOD=("/bin/chmod")
 MKDIR=("/bin/mkdir" "-p")
 STAT_PRINTF=("stat" "-f")
@@ -20,7 +20,7 @@ CHOWN=("/usr/sbin/chown")
 CHGRP=("/usr/bin/chgrp")
 USER="$(chomp "$(id -un)")"
 export USER
-CONFIG="/Users/$USER/.config/rlnixpkgs"
+CONFIG="/Users/$USER/.config/macos-nix-setup"
 GROUP="admin"
 TOUCH=("/usr/bin/touch")
 PATH="/nix/var/nix/profiles/default/bin/:$PATH"
@@ -174,19 +174,18 @@ then
   execute_sudo "/usr/bin/xcode-select" "--switch" "/Library/Developer/CommandLineTools"
 fi
 
-if [ -d "$RL_CHECKOUT" ]
+if [ -d "$SETUP_CHECKOUT" ]
 then
-    ohai "Checkout dir $RL_CHECKOUT already exists. Updating."
-    cd $RL_CHECKOUT && git pull
+    ohai "Checkout dir $SETUP_CHECKOUT already exists. Updating."
+    cd "$SETUP_CHECKOUT" && git pull
 else
-  ohai "Checkout dir $RL_CHECKOUT does not exist. Creating."
-  execute_sudo "${MKDIR[@]}" "${RL_CHECKOUT}"
-  execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "${RL_CHECKOUT}"
-  ohai "Cloning repository ${RL_REPO} into ${RL_CHECKOUT}:"
-  git clone ${RL_REPO} ${RL_CHECKOUT}
+  ohai "Checkout dir $SETUP_CHECKOUT does not exist. Creating."
+  "${MKDIR[@]}" "$SETUP_CHECKOUT"
+  ohai "Cloning repository ${SETUP_REPO} into ${SETUP_CHECKOUT}:"
+  git clone "$SETUP_REPO" "$SETUP_CHECKOUT"
 fi
 
-cd $RL_CHECKOUT
+cd "$SETUP_CHECKOUT"
 
 mkdir -p "/Users/$USER/.config/zsh/config.d/"
 cp "config/p10k.zsh" "/Users/$USER/.config/zsh/config.d/"
@@ -210,8 +209,6 @@ cp darwin-configuration.nix.in darwin-configuration.nix
 cp home-manager/modules/git.nix.in home-manager/modules/git.nix
 cp home-manager/modules/ssh.nix.in home-manager/modules/ssh.nix
 
-sed -i -- "s/HOSTNAME/$(scutil --get LocalHostName)/" flake.nix
-
 ohai "Change config to current user $USER"
 sed -i -- "s/USERNAME/$USER/" flake.nix
 sed -i -- "s/USERNAME/$USER/" darwin-configuration.nix
@@ -226,7 +223,7 @@ sed -i -- "s/USERFULLNAME/$USERFULLNAME/" home-manager/modules/git.nix
 
 if ! [[ -n $USEREMAIL ]]
 then
-    ohai "Enter your company email address:"
+    ohai "Enter your private email address:"
     read USEREMAIL
 fi
 sed -i -- "s/USEREMAIL/$USEREMAIL/" home-manager/modules/git.nix
@@ -290,13 +287,12 @@ echo "experimental-features = nix-command flakes" > "/Users/$USER/.config/nix/ni
 cp darwin-configuration.nix /Users/$USER/.nixpkgs/
 
 ohai "Updating nix flakes"
-nix flake update --flake path:/opt/nixpkgs/
-sudo nix run nix-darwin -- switch --flake path:/opt/nixpkgs/
+nix flake update --flake "path:$SETUP_CHECKOUT"
+sudo nix run nix-darwin -- switch --flake "path:$SETUP_CHECKOUT#private-macbook"
 
 ohai "Switching to new system configuration"
 have_sudo_access
-nix run github:nix-community/home-manager -- switch --flake path:/opt/nixpkgs/#rlmbp2025
-# home-manager switch --flake path:/opt/nixpkgs/#rlmbp2025
+nix run github:nix-community/home-manager -- switch --flake "path:$SETUP_CHECKOUT#private-macbook"
 
 if ! [ -d "/etc/local/postgres16/data/base" ]
 then
@@ -406,8 +402,6 @@ if [ ! -d "/usr/local/lib" ]; then
     ohai "Link libs globally to python-magic et al can find them"
     sudo ln -s ~/.nix-profile/lib /usr/local/
 fi
-
-psql postgres -c "CREATE USER kravagtest WITH SUPERUSER PASSWORD 'asdf';"  &>/dev/null
 
 sudo rm -rf /Users/$USER/.nix-profile/bin/gpg
 

@@ -1,8 +1,6 @@
 #!/bin/bash
 
 set -e
-export GOCEPT_SELENIUM_HEADLESS=true
-export GOCEPT_SELENIUM_TIMEOUT=20
 if [ -x ./test.sh ]; then
     ./test.sh $@
 elif [ -x ./bin/py.test ]; then

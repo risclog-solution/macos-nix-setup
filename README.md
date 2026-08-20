@@ -1,48 +1,41 @@
-Setup development environment for Mac using Nix
-===============================================
+# Private macOS Nix Setup
 
-First install and update
-------------------------
+Declarative setup for a private Apple Silicon MacBook using Determinate Nix,
+nix-darwin, and Home Manager.
 
-Just run this install script from your terminal:
+## Scope
 
-```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/risclog-solution/macos-nix-setup/HEAD/install.sh)"
-```
+The configuration manages the macOS development environment, shell tools, Git,
+SSH, and selected local services. It is intentionally independent of any work
+environment.
 
-The installation consists of the following steps:
+## Prerequisites
 
-- MacGPG installieren, Schlüssel erzeugen und hochladen
-- Script starten: iTerm2, Developer Tools installieren
-- Name/GPGKey/… eingeben, danach immer `y` auswählen
-- Determinate Nix installieren
-- Script wieder starten, bis Fehler `system activation must now be run as root` kommt
-- Script wieder starten, sollte nun fehlerfrei durchlaufen
-- Am Ende im iTerm noch `p10k configure` ausführen, damit die Schriftarten passen
+- An Apple Silicon Mac running macOS
+- An administrator account
+- Xcode Command Line Tools
+- A GitHub account with SSH access configured
 
+## Installation
 
-Restore from Time Machine backup
---------------------------------
+Clone the private repository and run the installer from the checkout:
 
-When you restore you MacOS from a backup, the Nix Setup is broken because not
-everything is backed up. You then should first uninstall everything that was
-left over with this guide:
-
-https://nixos.org/manual/nix/unstable/installation/uninstall.html#macos
-
-```
-rm /Users/<USER>/.local/state/nix/profiles/home-manager*
-rm /Users/<USER>/.local/state/home-manager/gcroots/current-home
+```bash
+git clone git@github.com:marcus-steinbach/macos-nix-setup.git
+cd macos-nix-setup
+./install.sh
 ```
 
-Then, after a reboot, you can install everything from scatch.
+The installer installs Determinate Nix when necessary and bootstraps the Nix
+configuration. It may prompt for your private identity and signing settings.
 
+## Restore
 
-Problems with Nix Users after Update to MacOS 15 Sequoia
---------------------------------------------------------
+After restoring macOS from Time Machine, reinstall Determinate Nix before
+running the installer again. Nix-managed profiles are not fully restored by
+Time Machine.
 
-If you get errors after updating to MacOS 15 Sequoia like `error: the user '_nixbld1' in the group 'nixbld' does not exist`, you can fix this by running the following commands:
+## Status
 
-```
-curl --proto '=https' --tlsv1.2 -sSf -L https://github.com/NixOS/nix/raw/master/scripts/sequoia-nixbld-user-migration.sh | bash -
-```
+The configuration is being migrated from an older setup. The remaining work is
+tracked in [todo.md](todo.md).

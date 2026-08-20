@@ -21,22 +21,6 @@
         controlPath = "/tmp/ssh_mux_%h_%p_%r";
         controlPersist = "2h";
       };
-      "flyingcircus-jump-host" = {
-          hostname = "dev.risclog.net";
-          user = "${config.home.username}";
-      };
-      "*.fcio.net" = {
-          proxyJump = "flyingcircus-jump-host";
-      };
-      "*.gocept.net" = {
-          proxyJump = "flyingcircus-jump-host";
-      };
-      "aktiv* claimx* gha* kravag* mci* risclog* rlredmine* rlservices* volkswagen* timetracker* zertifkatsportal* vwfs*" = {
-          proxyJump = "flyingcircus-jump-host";
-      };
-      "dev.risclog.net" = {
-          proxyJump = "none";
-      };
     };
   };
 }
