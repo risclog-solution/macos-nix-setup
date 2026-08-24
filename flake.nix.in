@@ -62,6 +62,7 @@
             ./home-manager/modules/ssh.nix
             ./home-manager/modules/zsh.nix
             ./home-manager/mac.nix
+            ./home-manager/postgres_pytest.nix
             {
               home = {
                 username = "USERNAME";
