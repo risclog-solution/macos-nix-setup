@@ -39,6 +39,7 @@ in {
 
   ];
   nixpkgs.config.allowUnsupportedSystem = true;
+  nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "python-2.7.18.12"
   ];
@@ -146,6 +147,8 @@ in {
     docker-compose
     # Nix VSC
     nixpkgs-fmt
+    wkhtmltopdf
+    _1password-cli
     # github cli
     gh
     # needed for headless chrome
@@ -172,5 +175,5 @@ in {
   home.file.".local/bin/update_nix".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/update_nix";
   home.file.".local/bin/pdftk".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/pdftk";
   home.file.".git-templates/hooks/prepare-commit-msg".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/prepare-commit-msg";
-  home.file.".local/bin/wkhtmltopdf".source = config.lib.file.mkOutOfStoreSymlink "/nix/store/f6si5zpzfz9rba23j2pz8jg0pzj5zjxa-wkhtmltopdf-0.12.6-2/bin/wkhtmltopdf";
+  home.file.".local/bin/wkhtmltopdf".source = config.lib.file.mkOutOfStoreSymlink "/nix/store/6cxvq1jvq35vb17n3cadxgxim81f6a6i-wkhtmltopdf-0.12.6-2/bin/wkhtmltopdf";
 }
