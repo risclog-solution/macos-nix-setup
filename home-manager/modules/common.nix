@@ -175,5 +175,5 @@ in {
   home.file.".local/bin/update_nix".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/update_nix";
   home.file.".local/bin/pdftk".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/pdftk";
   home.file.".git-templates/hooks/prepare-commit-msg".source = config.lib.file.mkOutOfStoreSymlink "/opt/nixpkgs/binaries/prepare-commit-msg";
-  home.file.".local/bin/wkhtmltopdf".source = config.lib.file.mkOutOfStoreSymlink "/nix/store/6cxvq1jvq35vb17n3cadxgxim81f6a6i-wkhtmltopdf-0.12.6-2/bin/wkhtmltopdf";
+  # home.file.".local/bin/wkhtmltopdf".source = config.lib.file.mkOutOfStoreSymlink "/nix/store/6cxvq1jvq35vb17n3cadxgxim81f6a6i-wkhtmltopdf-0.12.6-2/bin/wkhtmltopdf";
 }
