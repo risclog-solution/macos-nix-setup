@@ -315,7 +315,7 @@ if ! [ -d "/etc/local/postgres16/data/base" ]
 then
     execute_sudo "${MKDIR[@]}" "/etc/local/postgres16/data"
     execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/postgres16"
-    INITDBRUN=$(ls /nix/store | grep 'postgresql-16.14$' | head -n 1)
+    INITDBRUN=$(ls /nix/store | grep 'postgresql-16.15$' | head -n 1)
     /nix/store/$INITDBRUN/bin/initdb /etc/local/postgres16/data
 fi
 sed -i 's/^#max_locks_per_transaction =.*$/max_locks_per_transaction = 512/' /etc/local/postgres16/data/postgresql.conf
