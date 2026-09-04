@@ -425,7 +425,7 @@ fi
 
 if [ ! -d "/usr/local/lib" ]; then
     ohai "Link libs globally to python-magic et al can find them"
-    sudo ln -s ~/.nix-profile/lib /usr/local/
+    sudo /bin/ln -s "$HOME/.nix-profile/lib" /usr/local/lib
 fi
 
 psql postgres -p 55432 -c "CREATE USER kravagtest WITH SUPERUSER PASSWORD 'asdf';"  &>/dev/null
