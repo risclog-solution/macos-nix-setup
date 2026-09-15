@@ -275,15 +275,6 @@ echo "GPGPUBKEY=\"$GPGPUBKEY\"" >> $CONFIG
 echo "USEONEPASSWORDAGENT=\"$USEONEPASSWORDAGENT\"" >> $CONFIG
 echo "BATOUAGEIDENTITYPASSPHRASE=\"$BATOUAGEIDENTITYPASSPHRASE\"" >> $CONFIG
 
-if [[ -x "$(command -v /nix/var/nix/profiles/default/bin/nix-channel)" ]]
-then
-    # Remove old nix-channels, we use flakes everywhere now
-    /nix/var/nix/profiles/default/bin/nix-channel --remove home-manager
-    /nix/var/nix/profiles/default/bin/nix-channel --remove nixpkgs
-    /nix/var/nix/profiles/default/bin/nix-channel --remove darwin
-    /nix/var/nix/profiles/default/bin/nix-channel --update
-fi
-
 if ! [[ -x "$(command -v /nix/var/nix/profiles/default/bin/nix-env)" ]]
 then
     ohai "Nix not found. Please install Nix via https://docs.determinate.systems, then rerun script"
