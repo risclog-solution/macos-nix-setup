@@ -28,6 +28,10 @@ in {
         doCheck = false;
       });
 
+      harfbuzz = prev.harfbuzz.overrideAttrs (old: {
+        doCheck = false;
+      });
+
     })
 ];
 
