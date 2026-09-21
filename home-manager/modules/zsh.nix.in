@@ -21,6 +21,7 @@
         export POSTGRES_USER=kravagtest
         export POSTGRES_PASS=asdf
         export POSTGRES_PORT=55432
+        export OP_BIOMETRIC_UNLOCK_ENABLED=true
         BATOU_AGE_IDENTITY_PASSPHRASE_CONFIG
 
         export OTEL_SDK_DISABLED=true
