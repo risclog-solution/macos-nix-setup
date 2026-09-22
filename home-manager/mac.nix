@@ -11,11 +11,7 @@
   # changes in each release.
   # home.stateVersion = "20.09";
 
-  # http://czyzykowski.com/posts/gnupg-nix-osx.html
-  # adds file to `~/.nix-profile/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac`
   home.packages = with pkgs; [
-    pinentry_mac
-
     nodejs_24
 
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/fonts/nerdfonts/default.nix
@@ -25,9 +21,6 @@
   # TODO
   # https://aregsar.com/blog/2020/turn-on-key-repeat-for-macos-text-editors/
   # automate `defaults write com.google.chrome ApplePressAndHoldEnabled -bool false`
-
-  programs.git.signing.signByDefault = true;
-  programs.gpg.enable = false;
 
   # nixpkgs.config.allowUnfree = true;
   nixpkgs.config.packageOverrides = pkgs:

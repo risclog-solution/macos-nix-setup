@@ -201,7 +201,6 @@ then
 else
     USERFULLNAME=""
     USEREMAIL=""
-    GPGPUBKEY=""
     USEONEPASSWORDAGENT=""
 fi
 
@@ -239,18 +238,6 @@ then
 fi
 sed -i -- "s/USEREMAIL/$USEREMAIL/" home-manager/modules/git.nix
 
-if ! [[ -n $GPGPUBKEY ]]
-then
-    ohai "Enter you gpg public key:"
-    read GPGPUBKEY
-fi
-if ! [[ $GPGPUBKEY ]]
-then
-    sed -i -- "s/SIGNINGKEY//" home-manager/modules/git.nix;
-else
-    sed -i -- "s/SIGNINGKEY/$GPGPUBKEY/" home-manager/modules/git.nix;
-fi
-
 if ! [[ -n $USEONEPASSWORDAGENT ]]
 then
     ohai "Use 1Password 8 SSH agent? (y/n)"
@@ -271,7 +258,6 @@ fi
 
 echo "USERFULLNAME=\"$USERFULLNAME\"" > $CONFIG
 echo "USEREMAIL=\"$USEREMAIL\"" >> $CONFIG
-echo "GPGPUBKEY=\"$GPGPUBKEY\"" >> $CONFIG
 echo "USEONEPASSWORDAGENT=\"$USEONEPASSWORDAGENT\"" >> $CONFIG
 echo "BATOUAGEIDENTITYPASSPHRASE=\"$BATOUAGEIDENTITYPASSPHRASE\"" >> $CONFIG
 
@@ -420,8 +406,6 @@ if [ ! -d "/usr/local/lib" ]; then
 fi
 
 psql postgres -p 55432 -c "CREATE USER kravagtest WITH SUPERUSER PASSWORD 'asdf';"  &>/dev/null
-
-sudo rm -rf /Users/$USER/.nix-profile/bin/gpg
 
 ohai "Opening iTerm, your new terminal app. If fonts are not shown correctly, run 'p10k configure' once to install NerdFont."
 open -a iTerm .
