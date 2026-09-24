@@ -20,8 +20,11 @@ in {
     noXKBgeomOverlay
 
     (final: prev: {
-      edencommon = prev.edencommon.overrideAttrs (_: {
+      edencommon = prev.edencommon.overrideAttrs (old: {
         doCheck = false;
+        cmakeFlags = (old.cmakeFlags or []) ++ [
+          "-DBUILD_TESTING=OFF"
+        ];
       });
 
       uvloop = prev.uvloop.overrideAttrs (_: {
