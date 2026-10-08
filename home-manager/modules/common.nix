@@ -144,6 +144,7 @@ in {
     yarn
     neovim
     python27
+    python38
     python311
     python312
     python313
