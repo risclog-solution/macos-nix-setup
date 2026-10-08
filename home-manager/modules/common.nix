@@ -96,7 +96,7 @@ in {
     file
     ruby
     binutils
-    jdk17.out
+    jdk21.out
     coreutils
     ghostscript
     geckodriver
