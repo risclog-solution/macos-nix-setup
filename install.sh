@@ -361,6 +361,7 @@ then
     then
         ohai "Installing zest.releaser."
         pipx install zest.releaser
+        pipx inject zest-releaser risclog.zestreleaser.notify
     fi
 
     if ! [[ -x "$(command -v ruff)" ]]
