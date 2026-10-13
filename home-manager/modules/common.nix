@@ -72,6 +72,7 @@ in {
     openssl.dev
     openssl.out
     maven
+    fop
     libxslt
     libffi.dev
     libffi.out
