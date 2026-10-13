@@ -49,6 +49,7 @@ in {
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "python-2.7.18.12"
+    "tmate-unstable-2022-08-07"
   ];
 
   home.packages = with pkgs; [
