@@ -1,5 +1,6 @@
 { config, pkgs, lib, libs, ... }:
 {
+  home.file.".config/zsh/config.d/git-hooks.zsh".source = ./git-hooks.zsh;
   programs.zsh = {
     enable = true;
     shellAliases = {
