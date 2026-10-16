@@ -35,6 +35,25 @@ in {
         doCheck = false;
       });
 
+geckodriver = prev.geckodriver.overrideAttrs (old: rec {
+  version = "0.37.1";
+
+  src = prev.fetchFromGitHub {
+    owner = "mozilla";
+    repo = "geckodriver";
+    rev = "v${version}";
+    hash = "sha256-LnfJmiV4SJpFBXDAJmwbHKv6RvO40e7/3Lm6Jc6YA40=";
+  };
+
+  cargoHash = "sha256-zNwlQ2CsDHQnFog59jKFAxVaNK0/8hUts6NRkFVKCGk=";
+
+  cargoDeps = prev.rustPlatform.fetchCargoVendor {
+    inherit src;
+    name = "geckodriver-${version}-vendor";
+    hash = cargoHash;
+  };
+});
+
     })
 ];
 
@@ -57,6 +76,7 @@ in {
     gnused.out
     zopfli.dev
     gitleaks
+    git-lfs
     tmate
     ack
     age

@@ -290,16 +290,18 @@ nix run github:nix-community/home-manager -- switch --flake path:/opt/nixpkgs/#r
 
 if ! [ -d "/etc/local/postgres16/data/base" ]
 then
+    ohai "Bootsprap postgres"
     execute_sudo "${MKDIR[@]}" "/etc/local/postgres16/data"
     execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/postgres16"
     INITDBRUN=$(ls /nix/store | grep 'postgresql-16.15$' | head -n 1)
     /nix/store/$INITDBRUN/bin/initdb /etc/local/postgres16/data
+    sed -i 's/^#max_locks_per_transaction =.*$/max_locks_per_transaction = 512/' /etc/local/postgres16/data/postgresql.conf
+    sed -i 's/^max_connections =.*$/max_connections = 400/' /etc/local/postgres16/data/postgresql.conf
 fi
-sed -i 's/^#max_locks_per_transaction =.*$/max_locks_per_transaction = 512/' /etc/local/postgres16/data/postgresql.conf
-sed -i 's/^max_connections =.*$/max_connections = 400/' /etc/local/postgres16/data/postgresql.conf
 
 if ! [ -d "/etc/local/redis" ]
 then
+    ohai "Bootsprap redis"
     execute_sudo "${MKDIR[@]}" "/etc/local/redis/db"
     execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/redis"
     cp config/redis.conf /etc/local/redis/
@@ -307,6 +309,7 @@ fi
 
 if ! [ -d "/etc/local/fakes3/data" ]
 then
+    ohai "Bootsprap fakes3"
     execute_sudo "${MKDIR[@]}" "/etc/local/fakes3/data"
     execute_sudo "${CHOWN[@]}" "-R" "${USER}:${GROUP}" "/etc/local/fakes3/data"
     gem install webrick
@@ -315,6 +318,7 @@ fi
 
 if ! [ -d "/etc/local/nginx" ]
 then
+    ohai "Bootsprap nginx"
     execute_sudo "${MKDIR[@]}" "/etc/local/nginx/servers"
     execute_sudo "${MKDIR[@]}" "/etc/local/nginx/logs"
     execute_sudo "${MKDIR[@]}" "/var/cache/nginx/"
@@ -326,6 +330,7 @@ fi
 
 if [[ -x "$(command -v pipx)" ]]
 then
+    ohai "Bootsprap pipx packages"
     if ! [[ -x "$(command -v black)" ]]
     then
         ohai "Installing black."
@@ -406,7 +411,9 @@ if [ ! -d "/usr/local/lib" ]; then
     sudo /bin/ln -s "$HOME/.nix-profile/lib" /usr/local/lib
 fi
 
-psql postgres -p 55432 -c "CREATE USER kravagtest WITH SUPERUSER PASSWORD 'asdf';"  &>/dev/null
+ohai "Ensure test capabilities"
+# psql postgres -p 55432 -c "CREATE USER kravagtest WITH SUPERUSER PASSWORD 'asdf';"  &>/dev/null
+ditto -x -k /opt/nixpkgs/tools/firefox/firefox-156.0-macos.zip /opt/nixpkgs/tools/firefox/runtime
 
 ohai "Opening iTerm, your new terminal app. If fonts are not shown correctly, run 'p10k configure' once to install NerdFont."
 open -a iTerm .

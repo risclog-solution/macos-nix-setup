@@ -6,3 +6,4 @@ darwin-configuration.nix
 home-manager/modules/git.nix
 home-manager/modules/ssh.nix
 home-manager/modules/zsh.nix
+tools/firefox/runtime/
