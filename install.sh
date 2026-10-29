@@ -174,6 +174,23 @@ then
   execute_sudo "/usr/bin/xcode-select" "--switch" "/Library/Developer/CommandLineTools"
 fi
 
+# tools/firefox/*.zip is stored in git-lfs, which is not installed on a fresh
+# Mac. Use a temporary standalone binary, only for fetching the repository.
+if ! command -v git-lfs >/dev/null 2>&1
+then
+    ohai "git-lfs not found. Downloading a temporary copy."
+    LFS_VERSION=3.8.1
+    case "$(uname -m)" in
+        arm64) LFS_ARCH=arm64 ;;
+        *) LFS_ARCH=amd64 ;;
+    esac
+    LFS_TMP="$(mktemp -d)"
+    trap 'rm -rf "$LFS_TMP"' EXIT
+    curl -fsSL -o "$LFS_TMP/lfs.zip" "https://github.com/git-lfs/git-lfs/releases/download/v${LFS_VERSION}/git-lfs-darwin-${LFS_ARCH}-v${LFS_VERSION}.zip"
+    unzip -q "$LFS_TMP/lfs.zip" -d "$LFS_TMP"
+    export PATH="$LFS_TMP/git-lfs-${LFS_VERSION}:$PATH"
+fi
+
 if [ -d "$RL_CHECKOUT" ]
 then
     ohai "Checkout dir $RL_CHECKOUT already exists. Updating."
@@ -187,6 +204,9 @@ else
 fi
 
 cd $RL_CHECKOUT
+
+git lfs install --local
+git lfs pull
 
 mkdir -p "/Users/$USER/.config/zsh/config.d/"
 cp "config/p10k.zsh" "/Users/$USER/.config/zsh/config.d/"
